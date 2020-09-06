@@ -21,7 +21,14 @@ import javafx.stage.Stage;
 public class JfxView extends HBox {
     private List<StopCovidUserView> users = new ArrayList<>();
     private StopCovidServerView server;
-    /** View for the whole application. */
+
+    /**
+     * View for the whole application.
+     * @param stage the window
+     * @param width width in px
+     * @param height height in px
+     * @param nbUsers number of users to manage
+     */
     public JfxView(final Stage stage, final int width,
                    final int height, final int nbUsers) {
         server = new StopCovidServerView();

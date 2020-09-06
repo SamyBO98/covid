@@ -16,7 +16,7 @@ public class StopCovidServerView {
     *
     * @param text  Name of the user to declare risky.
     */
-    public void declareRisky(String text) {
+    public void declareRisky(final String text) {
         for (Node c : gui.getChildren()) {
             if (((Label) c).getText().equals(text)) {
                 return;
