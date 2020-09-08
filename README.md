@@ -99,17 +99,17 @@ Discussion par messagerie instantanée : [mif01-cm](https://go.rocket.chat/invit
 
 * [TP2-outils/README.md](TP2-outils/README.md)
 
-## CM 3, 4 & 5 : Coding style, Design-patterns  (100 % distance, visio)
+## CM 3 & 4 : Coding style, Design-patterns  (100 % distance, visio)
 
 <!-- Discussion par messagerie instantanée : [mif01-cm](https://go.rocket.chat/invite?host=chat-info.univ-lyon1.fr&path=invite%2Fys6End) -->
-
-[https://univ-lyon1.webex.com/univ-lyon1/j.php?MTID=m862e860573cafecb0aa80f5b16e9119a](En direct sur Webex le matin)
-Rejoindre par téléphone
-+33-1851-48835 Code d'accès participant 145 919 11, vidéo sur Youtube : [https://youtu.be/oal57dd73nY](https://youtu.be/oal57dd73nY).
 
 ### Design patterns
 
 * Slides : [CM-patterns.pdf](https://perso.liris.cnrs.fr/lionel.medini/enseignement/M1IF01/CM-patterns.pdf)
+
+* Vidéo du mardi 8/9 sur Youtube : [https://youtu.be/oal57dd73nY](https://youtu.be/oal57dd73nY)
+
+* Visio en direct mercredi 9/9, 8h: [https://univ-lyon1.webex.com/univ-lyon1/e.php?MTID=m51f735df60e43712cbe988d30a2637f2](En direct sur WebEx) (avec cette fois-ci un lien testé sous Linux)
 
 ## TP 3 & 4 : Design patterns & refactoring
 
