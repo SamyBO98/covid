@@ -103,9 +103,9 @@ Discussion par messagerie instantanée : [mif01-cm](https://go.rocket.chat/invit
 
 <!-- Discussion par messagerie instantanée : [mif01-cm](https://go.rocket.chat/invite?host=chat-info.univ-lyon1.fr&path=invite%2Fys6End) -->
 
-[https://univ-lyon1.webex.com/univ-lyon1/j.php?MTID=m862e860573cafecb0aa80f5b16e9119a](En direct sur Webex)
+[https://univ-lyon1.webex.com/univ-lyon1/j.php?MTID=m862e860573cafecb0aa80f5b16e9119a](En direct sur Webex le matin)
 Rejoindre par téléphone
-+33-1851-48835 Code d'accès participant 145 919 11
++33-1851-48835 Code d'accès participant 145 919 11, vidéo sur Youtube : [https://youtu.be/oal57dd73nY](https://youtu.be/oal57dd73nY).
 
 ### Design patterns
 
