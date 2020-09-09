@@ -111,6 +111,8 @@ Discussion par messagerie instantanée : [mif01-cm](https://go.rocket.chat/invit
 
 * Visio en direct mercredi 9/9, 8h: [En direct sur WebEx](https://univ-lyon1.webex.com/univ-lyon1/e.php?MTID=m51f735df60e43712cbe988d30a2637f2) (avec cette fois-ci un lien testé sous Linux)
 
+* Vidéo du mercredi 9/9 sur Youtube : [https://youtu.be/9oV0xDSrXes](https://youtu.be/9oV0xDSrXes)
+
 ## TP 3 & 4 : Design patterns & refactoring
 
 * Discussion par messagerie instantanée : [mif01-td-tp](https://go.rocket.chat/invite?host=chat-info.univ-lyon1.fr&path=invite%2FuD5wxp)
@@ -125,6 +127,8 @@ Discussion par messagerie instantanée : [mif01-cm](https://go.rocket.chat/invit
   (version imprimable : [03-coding-style-handout.pdf](03-coding-style-handout.pdf))
 
 ## CM 5 : Spécifications et cas d'utilisation (100 % distance, vidéo libre-service disponible très bientôt)
+
+* Vidéo : [<img src="https://mediacenter.univ-lyon1.fr/videos/MEDIA200909205129202/preview.jpg" width="128" height="72" />](https://mediacenter.univ-lyon1.fr/videos/?video=MEDIA200909205129202)
 
 * [05-UML-CU.pdf](05-UML-CU.pdf)
 
