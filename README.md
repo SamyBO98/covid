@@ -134,14 +134,14 @@ Discussion par messagerie instantanée : [mif01-cm](https://go.rocket.chat/invit
 
 ## CM 6 : Test (hybride "comodal", des étudiants en présentiel et d'autres en visio)
 
-À venir.
-<!-- 
+* Infos de connexion pour la visio : à venir (ici et sur le chat-info)
+
 * Transparents de Sandrine Gouraud :
-  [06-expose18092019.pdf](06-expose18092019.pdf)
-  
+  [06-expose11092020.pdf](06-expose11092020.pdf)
+
 * [Software Fail Watch, 5th
   edition](https://www.tricentis.com/wp-content/uploads/2018/01/20180119_Software-Fails-Watch_Small_Web.pdf)
-  présenté pendant le cours. -->
+  présenté pendant le cours.
 
 ## CM 7 : Métaprogrammation, introduction à l'agilité (100 % distance, vidéo libre-service)
 

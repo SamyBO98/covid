@@ -79,6 +79,10 @@ Si ce n'est pas le cas installez-les. Sous Ubuntu, faire :
 
     apt install git maven
 
+### Configuration de OpenJFX 11 avec Eclipse
+
+Suivre les instructions fournies sur ce [lien](https://gist.github.com/stevenliebregt/bc62a382fc43064136b662ee62172ab3).
+
 ## Création d'un projet sur la forge et récupération du code
 
 Ouvrez dans votre navigateur
