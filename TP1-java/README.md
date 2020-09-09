@@ -293,4 +293,4 @@ les lisez pas avant d'y avoir réfléchi vous-mêmes.
 
 ## Si vous avez fini ...
 
-Passez au [lab2](../TP2-outils) !
+Passez au [TP2](../TP2-outils) !
