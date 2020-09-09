@@ -1,5 +1,20 @@
 Ce fichier contiendra les nouvelles du cours. Un mail sera envoyé quand le fichier est mis à jour.
 
+# 09/09/2020 : Infos pour la journée de jeudi
+
+* Le CM du 10/9 matin est en 100% distanciel, vidéo à regarder en libre-service (si vous ne l'avez pas terminée sur le créneau, vous pourrez la continuer plus tard si vous êtes en présentiel le matin).
+
+* Petits conseils sur le chat-info :
+
+    * Rappel : il y a 3 canaux, un général, un CM et un TP/TD. Essayez de poster dans le bon.
+    * Je ne réponds pas aux questions générales envoyées par mail ou message personnel, utilisez le canal partagé du chat-info pour que tout le monde en profite. Pour les questions spécifiques à votre binôme on peut parler en privé bien sûr.
+    * Évitez d'envoyer des captures d'écran quand ce que vous postez est seulement du texte. Copiez-collez le texte, c'est plus léger et ça permet aux autres participants de copier-coller le texte eux aussi.
+    * Soyez précis dans vos questions. « Ça ne fonctionne pas », c'est sans doute vrai, mais pas assez précis pour qu'on puisse vous aider. S'il y a une erreur, copiez-collez le message d'erreur. Si c'est autre chose, expliquez. Allez, rappelons les classiques : [How To Ask Questions The Smart Way](http://www.catb.org/esr/faqs/smart-questions.html)
+
+* J'ai ajouté des cases sur TOMUSS pour que vous puissiez nous informer sur votre avancée (les cases dont le nom commence par `MIF01_`). Merci de tenir ces cases à jour pour que nous ayons une idée sur votre avancée. Si vous ne le faites pas, je considérerai que vous ne participez pas au cours, et je casserai les binômes contenant un étudiant « fantôme ».
+
+* Le CM du 11/9, 8h sera en « co-modal », avec les étudiants des groupes A et B présents dans l'amphi et les autres en visio. Je mettrai le lien sur la page du cours. Je ne peux pas garantir que la vidéo sera disponible a posteriori, soyez là pour le direct.
+
 # 08/09/2020 : Infos pour la journée de mercredi
 
 * Nous avons eu un souci d'incompatibilité Linux pour le CM3 via WebEx, le soucis est réglé, le nouveau lien WebEx est disponible dans [README.md](README.md). À la fin du CM4 vous regarderez, si ce n'est pas déjà fait, la vidéo « Coding style ».
