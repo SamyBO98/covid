@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <Label text="Stop COVID" BorderPane.alignment="CENTER" />
+   </top>
+   <left>
+      <VBox prefHeight="200.0" prefWidth="450.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" text="Add user" />
+         </children>
+      </VBox>
+   </left>
+   <right>
+      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="450.0" BorderPane.alignment="CENTER">
+         <items>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Proximity simulator :" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="User details :" />
+               </children>
+            </VBox>
+         </items>
+      </SplitPane>
+   </right>
+</BorderPane>
