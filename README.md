@@ -124,7 +124,7 @@ Discussion par messagerie instantanée : [mif01-cm](https://go.rocket.chat/invit
 * Transparents : [03-coding-style-slides.pdf](03-coding-style-slides.pdf)
   (version imprimable : [03-coding-style-handout.pdf](03-coding-style-handout.pdf))
 
-## CM 5 : Spécifications et cas d'utilisation (informations à venir)
+## CM 5 : Spécifications et cas d'utilisation (100 % distance, vidéo libre-service disponible très bientôt)
 
 * [05-UML-CU.pdf](05-UML-CU.pdf)
 
