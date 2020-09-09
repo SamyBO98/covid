@@ -17,7 +17,7 @@ Le plus simple est de partir répertoire `stopcovid` fourni dans votre archive. 
 
 ### Ressources
 
-- [Cours (et pointeurs à la fin du cours) sur les Design patterns](https://perso.liris.cnrs.fr/lionel.medini/enseignement/MIF01/CM-patterns.pdf)
+- [Cours (et pointeurs à la fin du cours) sur les Design patterns](https://perso.liris.cnrs.fr/lionel.medini/enseignement/M1IF01/CM-patterns.pdf)
 - [Aide à la mise en place du pattern MVC pour ce TP](./mvc.md)
 
 ## Consignes
@@ -31,7 +31,7 @@ Penser à remplir dès à présent TOMUSS pour indiquer votre dépôt forge.
 
 Il est conseillé d'utiliser un IDE capable __a minima__ de générer des diagrammes UML à partir du code, ou mieux, de faire du __round-trip engineering__ (prendre en compte les modifications du code dans les schémas et inversement). C'est le cas avec IntelliJ, et Eclipse avec un plugin comme [Object Aid](https://www.objectaid.com/) (explication rapides en vidéo [ici](https://www.youtube.com/watch?v=0Zlh56mTS6c)).
 
-Il est aussi possible en théorie de [générer un diagramme de classe via JavaDoc](http://gochev.blogspot.com/2011/03/generate-javadoc-with-uml-diagrams.html), mais le plugin est [cassé avec Java 11](https://github.com/dspinellis/UMLGraph/issues/51).
+Il est aussi possible de [générer un diagramme de classe via JavaDoc](http://gochev.blogspot.com/2011/03/generate-javadoc-with-uml-diagrams.html).
 
 ### Qualité du code
 
