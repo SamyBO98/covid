@@ -15,17 +15,25 @@ public class App extends Application {
 //        mainStage.setScene(CreateMainScene());
         mainStage.show();
 
-        System.out.println(getClass().getResource("/fr/univ_lyon1/info/m1/stopcovid_simulator/view"));
+        System.out.println(getClass()
+                .getResource("/fr/univ_lyon1/info/m1/stopcovid_simulator/view"));
     }
 
+    /**
+     * A main method in case the user launches the application using
+     * App as the main class.
+     *
+     * @param args Command-line arguments
+     */
     public static void main(final String[] args) {
         launch(args);
     }
 
-    private Scene CreateMainScene() throws IOException {
+    private Scene createMainScene() throws IOException {
         var mainController = new MainController();
 
-        var mainFXMLLoader = new FXMLLoader(getClass().getResource("/fr/univ_lyon1/info/m1/stopcovid_simulator/view/MainView.fxml"));
+        var mainFXMLLoader = new FXMLLoader(getClass()
+                .getResource("/fr/univ_lyon1/info/m1/stopcovid_simulator/view/MainView.fxml"));
         mainFXMLLoader.setController(mainController);
 
         return new Scene(mainFXMLLoader.load());
