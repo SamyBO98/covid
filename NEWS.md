@@ -11,7 +11,7 @@ Ce fichier contiendra les nouvelles du cours. Un mail sera envoyé quand le fich
     * Évitez d'envoyer des captures d'écran quand ce que vous postez est seulement du texte. Copiez-collez le texte, c'est plus léger et ça permet aux autres participants de copier-coller le texte eux aussi.
     * Soyez précis dans vos questions. « Ça ne fonctionne pas », c'est sans doute vrai, mais pas assez précis pour qu'on puisse vous aider. S'il y a une erreur, copiez-collez le message d'erreur. Si c'est autre chose, expliquez. Allez, rappelons les classiques : [How To Ask Questions The Smart Way](http://www.catb.org/esr/faqs/smart-questions.html)
 
-* J'ai ajouté des cases sur TOMUSS pour que vous puissiez nous informer sur votre avancée (les cases dont le nom commence par `MIF01_`). Merci de tenir ces cases à jour pour que nous ayons une idée sur votre avancée. Si vous ne le faites pas, je considérerai que vous ne participez pas au cours, et je casserai les binômes contenant un étudiant « fantôme ».
+* J'ai ajouté des cases sur TOMUSS pour que vous puissiez nous informer sur votre avancée (les cases dont le nom commence par `MIF01_`). Merci de tenir ces cases à jour pour que nous ayons une idée sur votre avancée. Si vous ne le faites pas, je considérerai que vous ne participez pas au cours, et je casserai les binômes contenant un étudiant « fantôme ». Si vous n'avez pas commencé une étape, remplissez avec « Pas_Commencé » pour l'instant pour montrer signe de vie.
 
 * Le CM du 11/9, 8h sera en « co-modal », avec les étudiants des groupes A et B présents dans l'amphi et les autres en visio. Je mettrai le lien sur la page du cours. Je ne peux pas garantir que la vidéo sera disponible a posteriori, soyez là pour le direct.
 
