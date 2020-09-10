@@ -214,7 +214,10 @@ Si vous souhaitez utiliser un IDE, votre IDE favori propose
 probablement une prise en charge de Maven, et configurera donc le
 projet automatiquement depuis le `pom.xml` :
 
-- VSCode : installer le plugin [Java Extension Pack](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack) qui apporte le support du langage Java, de Maven, ... Faire menu File → Open Folder (Ctrl+k Ctrl+o) puis choisir le répertoire. Une section « Maven Projects » doit s'ajouter à la barre latérale de gauche, et vous pourrez sélectionner les actions à effectuer (`exec:java` dans la section `exec` pour lancer l'application).
+- VSCode : installer le plugin [Java Extension Pack](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack) qui apporte le support du langage Java, de Maven, ... Faire menu File → Open Folder (Ctrl+k Ctrl+o) puis choisir le répertoire. Une section « Maven Projects » doit s'ajouter à la barre latérale de gauche, et vous pourrez sélectionner les actions à effectuer (`exec:java` dans la section `exec` pour lancer l'application). Si vous n'avez pas la complétion intelligente et la navigation dans le code, vous devrez sans doute positionner votre variable de configuration `java.home` : faire avec <kbd>Control</kbd> + <kbd>,</kbd>, puis chercher `java.home` et « edit in settings.json ». Au Nautibus, la configuration est :
+<pre>
+"java.home" : "/home/tpetu/m1if01/jdk-11.0.4/"
+</pre>
 
 - Eclipse : installer le plugin [m2e](http://www.eclipse.org/m2e/), puis importer le projet en
   temps que projet Maven (File → Import... → Maven → Existing Maven Projects). Au nautibus, Eclipse
