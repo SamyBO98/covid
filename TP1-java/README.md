@@ -267,7 +267,7 @@ public enum StopCovidUserStatus {
 }
 ```
 
-puis utilisez ce type énuméré partout où les chaînes `"RISKY"`, `"INFECTED"` et `"NO_RISK"` apparaissent dans votre base de code. Mieux, vous pouvez faire en sorte que l'affichage produise des chaînes plus agréables comme `Risky`, `Infected` et `No Risk` (cf. par exemple https://openclassrooms.com/fr/courses/26832-apprenez-a-programmer-en-java/22162-decouvrez-les-enumerations si vous ne voyez pas comment faire).
+puis utilisez ce type énuméré partout où les chaînes `"RISKY"`, `"INFECTED"` et `"NO_RISK"` apparaissent dans votre base de code. Mieux, vous pouvez faire en sorte que l'affichage produise des chaînes plus agréables comme `Risky`, `Infected` et `No Risk` (cf. par exemple [page 142 du cours « Apprenez àprogrammer en Java »](http://user.oc-static.com/pdf/10601-apprenez-a-programmer-en-java.pdf) si vous ne voyez pas comment faire).
 
 ### Limiter les contacts transmis au serveur
 
