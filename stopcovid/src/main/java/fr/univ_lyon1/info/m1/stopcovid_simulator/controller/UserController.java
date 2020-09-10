@@ -9,14 +9,19 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class UserController implements Initializable {
-    @FXML private Label idLabel;
-    @FXML private Label statusLabel;
-    @FXML private Label contactsSummaryLabel;
+    @FXML
+    private Label idLabel;
+    @FXML
+    private Label statusLabel;
+    @FXML
+    private Label contactsSummaryLabel;
 
     private final UserModel user;
 
     /**
+     * Constructor.
      * this `user` : `user` reference.
+     *
      * @param user The `UserModel` to control.
      */
     public UserController(final UserModel user) {

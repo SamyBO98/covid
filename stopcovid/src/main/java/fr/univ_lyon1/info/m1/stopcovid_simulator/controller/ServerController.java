@@ -24,6 +24,7 @@ public class ServerController implements Initializable {
     private final ArrayList<UserBoxController> userBoxControllers;
 
     /**
+     * Constructor.
      * `server` : New instance.
      * `userBoxControllers` : New instance.
      */

@@ -26,7 +26,9 @@ public class UserBoxController implements Initializable {
     private final UserModel user;
 
     /**
+     * Constructor.
      * this `user` : `user` reference.
+     *
      * @param user The `UserModel` to control
      */
     public UserBoxController(final UserModel user) {

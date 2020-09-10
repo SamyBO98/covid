@@ -6,6 +6,7 @@ public class ServerModel {
     private final ArrayList<UserModel> users;
 
     /**
+     * Constructor.
      * `users` : New instance.
      */
     public ServerModel() {
@@ -14,6 +15,7 @@ public class ServerModel {
 
     /**
      * Create a new `UserModel` and add it to `users`.
+     *
      * @return The `UserModel` created
      */
     public UserModel createUser() {

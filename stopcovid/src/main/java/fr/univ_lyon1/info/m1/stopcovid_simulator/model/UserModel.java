@@ -7,6 +7,7 @@ public class UserModel {
     private Status status;
 
     /**
+     * Constructor.
      * `id` : Random UUID.
      * `status` : NO_RISK.
      */
