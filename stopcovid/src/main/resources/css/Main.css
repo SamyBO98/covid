@@ -1,0 +1,27 @@
+@import "Bootstrapfx.css";
+
+@font-face {
+    src: url("/font/Comfortaa-Regular.ttf");
+}
+
+* {
+    -fx-alignment: center;
+    -fx-spacing: 5px;
+    -fx-padding: 5px;
+}
+
+.root {
+    -fx-font-family: "Comfortaa", cursive;
+    -fx-background-color: #FFF8DC;
+    -fx-padding: 15px;
+}
+
+.button:hover {
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 1), 10, 0, 0, 0);
+}
+
+.btn-rounded {
+    -fx-background-radius: 32px;
+    -fx-border-radius: 32px;
+}
