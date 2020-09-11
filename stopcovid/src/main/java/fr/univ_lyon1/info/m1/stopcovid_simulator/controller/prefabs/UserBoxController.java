@@ -54,6 +54,7 @@ public class UserBoxController implements Initializable {
             var userStage = new Stage();
             userStage.setTitle("Stop COVID");
             userStage.setScene(new Scene(userFXMLLoader.load()));
+            userStage.setOnHidden(event -> openUserButton.setDisable(false));
 //            userStage.setResizable(false);
             userStage.show();
 
