@@ -60,7 +60,7 @@ Les informations de dernière minute sont disponibles ici :
 [NEWS.md](NEWS.md). Les informations importantes seront envoyées par
 email, ce fichier en contient une copie.
 
-## CM1 1: Introduction (100 % distance, vidéo libre-service)
+## CM 1: Introduction (100 % distance, vidéo libre-service)
 
 Discussion par messagerie instantanée : [mif01-cm](https://go.rocket.chat/invite?host=chat-info.univ-lyon1.fr&path=invite%2Fys6End)
 
@@ -76,7 +76,7 @@ Discussion par messagerie instantanée : [mif01-cm](https://go.rocket.chat/invit
 
 * Transparents : [01-introduction-slides.pdf](01-introduction-slides.pdf) (version imprimable : [01-introduction-handout.pdf](01-introduction-handout.pdf))
   
-## TP1 1 : Mise en route Java
+## TP 1 : Mise en route Java
 
 * Discussion par messagerie instantanée : [mif01-td-tp](https://go.rocket.chat/invite?host=chat-info.univ-lyon1.fr&path=invite%2FuD5wxp)
 
@@ -149,14 +149,14 @@ Discussion par messagerie instantanée : [mif01-cm](https://go.rocket.chat/invit
 
 ### Métaprogrammation
 
-* Vidéo : Vidéo : [<img src="https://mediacenter.univ-lyon1.fr/videos/MEDIA200814143643906/preview.jpg" width="128" height="72" />](https://mediacenter.univ-lyon1.fr/videos/?video=MEDIA200814143643906)
+* Vidéo : [<img src="https://mediacenter.univ-lyon1.fr/videos/MEDIA200814143643906/preview.jpg" width="128" height="72" />](https://mediacenter.univ-lyon1.fr/videos/?video=MEDIA200814143643906)
 
 * Transparents [07-metaprogramming-slides.pdf](07-metaprogramming-slides.pdf)
   (version imprimable : [07-metaprogramming-handout.pdf](07-metaprogramming-handout.pdf))
 
 ### Introduction à l'Agilité
 
-* Vidéo : Vidéo : [<img src="https://mediacenter.univ-lyon1.fr/videos/MEDIA200814142723170/preview.jpg" width="128" height="72" />](https://mediacenter.univ-lyon1.fr/videos/?video=MEDIA200814142723170)
+* Vidéo : [<img src="https://mediacenter.univ-lyon1.fr/videos/MEDIA200814142723170/preview.jpg" width="128" height="72" />](https://mediacenter.univ-lyon1.fr/videos/?video=MEDIA200814142723170)
 
 * Transparents : [08-agilite-slides.pdf](08-agilite-slides.pdf)
   (version imprimable : [08-agilite-handout.pdf](08-agilite-handout.pdf))
