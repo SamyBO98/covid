@@ -165,8 +165,8 @@ Discussion par messagerie instantanée : [mif01-cm](https://go.rocket.chat/invit
 
 * Discussion par messagerie instantanée : [mif01-td-tp](https://go.rocket.chat/invite?host=chat-info.univ-lyon1.fr&path=invite%2FuD5wxp)
 
-* [TD1-uc-style/TD_UseCaseFffound_et_style.pdf](TD1-uc-style/TD_UseCaseFffound_et_style.pdf)
-  (corrigé : [TD1-uc-style/TD_UseCaseFffound_et_style_correction.pdf](TD1-uc-style/TD_UseCaseFffound_et_style_correction.pdf))
+* [TD1-uc-style/TD-usecase-et-style.pdf](TD1-uc-style/TD-usecase-et-style.pdf)
+  (corrigé : [TD1-uc-style/TD-usecase-et-style-corrige.pdf](TD1-uc-style/TD-usecase-et-style-corrige.pdf))
 
 ## TP 6 & 7 : tests
 
