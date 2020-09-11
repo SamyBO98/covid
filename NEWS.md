@@ -1,5 +1,9 @@
 Ce fichier contiendra les nouvelles du cours. Un mail sera envoyé quand le fichier est mis à jour.
 
+# 10/09/2020 : Date de l'examen
+
+Sous réserve de disponibilité d'amphis, l'examen est planifié le mercredi 14/10/2020. Voir la page d'accueil du cours pour les détails.
+
 # 09/09/2020 : Infos pour la journée de jeudi
 
 * Le CM du 10/9 matin est en 100% distanciel, vidéo à regarder en libre-service (si vous ne l'avez pas terminée sur le créneau, vous pourrez la continuer plus tard si vous êtes en présentiel le matin).

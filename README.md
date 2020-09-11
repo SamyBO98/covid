@@ -4,14 +4,14 @@
 
 <!-- [Cf. ADE](http://adelb.univ-lyon1.fr/direct/index.jsp?projectId=4&days=0,1,2,3,4&resources=33140&weeks=4,5). -->
 
-* Emploi du temps : à venir 
+* Emploi du temps : Cf. ADE.
   Attention : les groupes ne sont pas correctement entrés dans ADE.
   Utilisez la ressource "M1 informatique" plus votre groupe pour voir l'emploi du temps.
 
 * Rendu du TP noté : vous devez avoir rempli le champ URL de TOMUSS avant jeudi 10 septembre 2020. Le rendu final est le dimanche 20 septembre 2020 à 23h59. Voir
   [projet-note.md](projet-note.md) pour un récapitulatif des consignes.
 
-* Examen : date à venir. 1h30 (sauf tiers-temps) Consignes : Seules 5
+* Examen : mercredi 14 octobre 2020. 1h30 (sauf tiers-temps) Consignes : Seules 5
   feuilles A4 recto-verso (donc 10 pages au total) sont autorisées à
   l’examen. Leur contenu est libre. Elles peuvent être une sélection de
   transparents, ou manuscrites, avec une taille de caractère de votre
@@ -132,9 +132,9 @@ Discussion par messagerie instantanée : [mif01-cm](https://go.rocket.chat/invit
 
 * [05-UML-CU.pdf](05-UML-CU.pdf)
 
-## CM 6 : Test (hybride "comodal", des étudiants en présentiel et d'autres en visio)
+## CM 6 (11/9, 8h) : Test (hybride "comodal", des étudiants en présentiel et d'autres en visio)
 
-* Infos de connexion pour la visio : à venir (ici et sur le chat-info)
+* Infos de connexion pour la visio WebEx : [https://univ-lyon1.webex.com/univ-lyon1/j.php?MTID=m12005f7531ed0055e0f3a5526470aed7](https://univ-lyon1.webex.com/univ-lyon1/j.php?MTID=m12005f7531ed0055e0f3a5526470aed7).
 
 * Transparents de Sandrine Gouraud :
   [06-expose11092020.pdf](06-expose11092020.pdf)
@@ -143,7 +143,7 @@ Discussion par messagerie instantanée : [mif01-cm](https://go.rocket.chat/invit
   edition](https://www.tricentis.com/wp-content/uploads/2018/01/20180119_Software-Fails-Watch_Small_Web.pdf)
   présenté pendant le cours.
 
-## CM 7 : Métaprogrammation, introduction à l'agilité (100 % distance, vidéo libre-service)
+## CM 7 (11/9): Métaprogrammation, introduction à l'agilité (100 % distance, vidéo libre-service)
 
 Discussion par messagerie instantanée : [mif01-cm](https://go.rocket.chat/invite?host=chat-info.univ-lyon1.fr&path=invite%2Fys6End)
 
@@ -161,10 +161,6 @@ Discussion par messagerie instantanée : [mif01-cm](https://go.rocket.chat/invit
 * Transparents : [08-agilite-slides.pdf](08-agilite-slides.pdf)
   (version imprimable : [08-agilite-handout.pdf](08-agilite-handout.pdf))
 
-### Intervention de Levent Acar (100 % distance, vidéo libre-service)
-
-À venir.
-
 ## TD 1 : Cas d'utilisation et coding styles
 
 * Discussion par messagerie instantanée : [mif01-td-tp](https://go.rocket.chat/invite?host=chat-info.univ-lyon1.fr&path=invite%2FuD5wxp)
@@ -178,12 +174,18 @@ Discussion par messagerie instantanée : [mif01-cm](https://go.rocket.chat/invit
 
 * [TP4-tests/README.md](TP4-tests/README.md)
 
-## CM 8 : Agilité (suite) (100 % distance, vidéo libre-service)
+## CM 8 (14/9) : Agilité (suite) (100 % distance, vidéo libre-service)
+
+### Fin du cours sur l'agilité
 
 Discussion par messagerie instantanée : [mif01-cm](https://go.rocket.chat/invite?host=chat-info.univ-lyon1.fr&path=invite%2Fys6End)
 
 * Transparents : [08-agilite-slides.pdf](08-agilite-slides.pdf)
   (version imprimable : [08-agilite-handout.pdf](08-agilite-handout.pdf))
+
+### Intervention de Levent Acar (100 % distance, vidéo libre-service)
+
+À venir.
 
 ## TD 2: Design-patterns
 
