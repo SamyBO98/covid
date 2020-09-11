@@ -1,5 +1,29 @@
 Ce fichier contiendra les nouvelles du cours. Un mail sera envoyé quand le fichier est mis à jour.
 
+# 11/09/2020 (ter) : Vidéo du CM sur le test
+
+La vidéo du CM sur le test est disponible, mais en mode « unlisted » sur Youtube. Le lien est disponible dans le canal mif01-cm du chat-info. Merci à Florian Garcia qui a retouché la bande son pour moins vous casser les oreilles avec les bip-bip des retardataires.
+
+# 11/09/2020 (bis) : Avancée du cours et du projet
+
+Nous voici à mi-parcours. Quelques rappels pour vous positionner sur votre avancée :
+
+* Vous devriez avoir regardé toutes les vidéos jusqu'au CM 7.
+
+* Vous devriez être bien avancés sur le refactoring de votre code avec le pattern MVC, et d'autres. Les énoncés TP1, TP2, TP3, TP4 sont là pour vous guider, mais on rappelle qu'un récapitulatif du travail demandé est dans [projet-note.md](projet-note.md).
+
+* Si vous n'avez pas encore commencé à réfléchir à votre rapport, regardez la section « Rapport » de [projet-note.md](projet-note.md). Ne sous-estimez pas le travail nécessaire pour l'écrire : il faudra à la fois une documentation technique de votre projet et la partie « éthique » qui vous demandera un peu de travail bibliographique pour comparer votre solution aux solutions de la vraie vie. Une discussion intéressante a discuté sur le chat-info [ici](https://chat-info.univ-lyon1.fr/group/mif01-td-tp?msg=EziNioGtPgH9mLxLy) pour vous donner un exemple de ce que peut donner une argumentation sur les choix techniques et leur impact sur l'éthique.
+
+* N'oubliez pas que la date limite est dimanche 20 au soir, le temps passe vite !
+
+# 11/09/2020 : Déplacement du dernier CM
+
+Pour des raisons de disponibilité d'amphi, j'ai du déplacer le dernier CM, qui aura donc lieu vendredi 18, 8h-9h30 et non jeudi 17 comme prévu initialement.
+
+Pour vous éviter un amphi en début de matinée suivi d'un trou dans votre emploi du temps, j'ai aussi réservé des salles de TP sur le créneau 9h45-13h. Il n'y aura pas d'enseignants, mais vous pourrez vous y installer pour travailler.
+
+Pour ce CM, tous les étudiants inscrits officiellement en M1 ont le choix entre présentiel et distanciel. Pour limiter le nombre d'étudiants présents, nous vous demandons de remplir la case « MIF01_je_viendrai_en_amphi_le_vendredi_18/9 » sur TOMUSS en mettant un « OUI » dans la case si vous souhaitez venir. Ne remplissez pas si vous souhaitez rester à distance, et ne venez pas si vous n'avez pas mis « OUI » dans la case. Pour l'instant j'ai mis un maximum à 50 « OUI » pour éviter d'avoir trop d'étudiants en salles machines entre l'amphi et l'après-midi, mais je pourrai peut-être ajuster la jauge si vous êtes plus à vouloir venir.
+
 # 10/09/2020 : Date de l'examen
 
 Sous réserve de disponibilité d'amphis, l'examen est planifié le mercredi 14/10/2020. Voir la page d'accueil du cours pour les détails.
