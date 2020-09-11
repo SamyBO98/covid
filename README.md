@@ -132,7 +132,7 @@ Discussion par messagerie instantanée : [mif01-cm](https://go.rocket.chat/invit
 
 * [05-UML-CU.pdf](05-UML-CU.pdf)
 
-## CM 6 (11/9, 8h) : Test (hybride "comodal", des étudiants en présentiel et d'autres en visio)
+## CM 6 (11/9/2020, 8h) : Test (hybride "comodal", des étudiants en présentiel et d'autres en visio)
 
 * Infos de connexion pour la visio WebEx : [https://univ-lyon1.webex.com/univ-lyon1/j.php?MTID=m12005f7531ed0055e0f3a5526470aed7](https://univ-lyon1.webex.com/univ-lyon1/j.php?MTID=m12005f7531ed0055e0f3a5526470aed7).
 
@@ -143,7 +143,7 @@ Discussion par messagerie instantanée : [mif01-cm](https://go.rocket.chat/invit
   edition](https://www.tricentis.com/wp-content/uploads/2019/01/Software-Fails-Watch-5th-edition.pdf)
   présenté pendant le cours.
 
-## CM 7 (11/9): Métaprogrammation, introduction à l'agilité (100 % distance, vidéo libre-service)
+## CM 7 (11/9/2020): Métaprogrammation, introduction à l'agilité (100 % distance, vidéo libre-service)
 
 Discussion par messagerie instantanée : [mif01-cm](https://go.rocket.chat/invite?host=chat-info.univ-lyon1.fr&path=invite%2Fys6End)
 
@@ -161,20 +161,14 @@ Discussion par messagerie instantanée : [mif01-cm](https://go.rocket.chat/invit
 * Transparents : [08-agilite-slides.pdf](08-agilite-slides.pdf)
   (version imprimable : [08-agilite-handout.pdf](08-agilite-handout.pdf))
 
-## TD 1 : Cas d'utilisation et coding styles
+## TD 1 (11/9/2020) : Cas d'utilisation et coding styles
 
 * Discussion par messagerie instantanée : [mif01-td-tp](https://go.rocket.chat/invite?host=chat-info.univ-lyon1.fr&path=invite%2FuD5wxp)
 
 * [TD1-uc-style/TD-usecase-et-style.pdf](TD1-uc-style/TD-usecase-et-style.pdf)
   (corrigé : [TD1-uc-style/TD-usecase-et-style-corrige.pdf](TD1-uc-style/TD-usecase-et-style-corrige.pdf))
 
-## TP 6 & 7 : tests
-
-* Discussion par messagerie instantanée : [mif01-td-tp](https://go.rocket.chat/invite?host=chat-info.univ-lyon1.fr&path=invite%2FuD5wxp)
-
-* [TP4-tests/README.md](TP4-tests/README.md)
-
-## CM 8 (14/9) : Agilité (suite) (100 % distance, vidéo libre-service)
+## CM 8 (14/9/2020) : Agilité (suite) (100 % distance, vidéo libre-service)
 
 ### Fin du cours sur l'agilité
 
@@ -187,13 +181,19 @@ Discussion par messagerie instantanée : [mif01-cm](https://go.rocket.chat/invit
 
 À venir.
 
-## TD 2: Design-patterns
+## TD 2 (14/9/2020): Design-patterns
 
 * Discussion par messagerie instantanée : [mif01-td-tp](https://go.rocket.chat/invite?host=chat-info.univ-lyon1.fr&path=invite%2FuD5wxp)
 
 * [TD2-scrum/ExerciceAgile.pdf](TD2-scrum/ExerciceAgile.pdf)
 
-## CM 8 : Éthique (100 % distance, vidéo libre-service)
+## TP 6 & 7 (15/9/2020 et 16/9/2020): tests
+
+* Discussion par messagerie instantanée : [mif01-td-tp](https://go.rocket.chat/invite?host=chat-info.univ-lyon1.fr&path=invite%2FuD5wxp)
+
+* [TP4-tests/README.md](TP4-tests/README.md)
+
+## CM 9 (16/9/2020) : Éthique (100 % distance, vidéo libre-service)
 
 Discussion par messagerie instantanée : [mif01-cm](https://go.rocket.chat/invite?host=chat-info.univ-lyon1.fr&path=invite%2Fys6End)
 

@@ -133,7 +133,7 @@ On souhaite expérimenter une autre stratégie, pour limiter les faux positifs :
 
 On souhaite maintenant permettre aux utilisateurs de supprimer des contacts de leur liste (ce qu'ils pourraient souhaiter faire par exemple avant de se déclarer infecté si ils souhaitent ne pas notifier un utilisateur).
 
-![Liste de compétences](img/delete-contacts.png)
+![Suppression d'un contact](img/stopcovid-delete-contacts.png)
 
 Cette copie d'écran a été obtenue avec le code ci-dessous dont vous
 pouvez vous inspirer :
