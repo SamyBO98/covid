@@ -131,7 +131,7 @@ Votre dépôt sur la Forge devra contenir :
     - Bouton « meet » directement sur les utilisateurs (2 pts)
     - Création de la liste d'utilisateurs (1 pt)
   - Autres extensions (3 pts)
-  - Modification de l'interface (1 pt)
+  - Modification de l'interface utilisateur (1 pt)
   - Tests automatiques (3 pts)
   - Intégration continue opérationnelle (gitlab affiche "Commit: passed" sur le dernier commit) (1 pt)
   - Principes GRASP bien appliqués (1 pt)
