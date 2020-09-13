@@ -1,6 +1,6 @@
 # Rendu du Mini Projet "StopCovid"
 
-**Votre travail devra être rendu sous forme d’un projet déposé sur la Forge Lyon 1, au plus tard le dimanche 22 septembre 2019 à 23h59.**
+**Votre travail devra être rendu sous forme d’un projet déposé sur la Forge Lyon 1, au plus tard le dimanche 20 septembre 2020 à 23h59.**
 
 Le mini-projet noté est le fil rouge de tous les TPs. Vous commencez à
 travailler sur la base de code au [lab1](TP1-java/), et vous ajoutez
@@ -131,7 +131,7 @@ Votre dépôt sur la Forge devra contenir :
     - Bouton « meet » directement sur les utilisateurs (2 pts)
     - Création de la liste d'utilisateurs (1 pt)
   - Autres extensions (3 pts)
-  - Modification de l'interface (1 pt)
+  - Modification de l'interface utilisateur (1 pt)
   - Tests automatiques (3 pts)
   - Intégration continue opérationnelle (gitlab affiche "Commit: passed" sur le dernier commit) (1 pt)
   - Principes GRASP bien appliqués (1 pt)

@@ -17,7 +17,7 @@ Le plus simple est de partir répertoire `stopcovid` fourni dans votre archive. 
 
 ### Ressources
 
-- [Cours (et pointeurs à la fin du cours) sur les Design patterns](https://perso.liris.cnrs.fr/lionel.medini/enseignement/MIF01/CM-patterns.pdf)
+- [Cours (et pointeurs à la fin du cours) sur les Design patterns](https://perso.liris.cnrs.fr/lionel.medini/enseignement/M1IF01/CM-patterns.pdf)
 - [Aide à la mise en place du pattern MVC pour ce TP](./mvc.md)
 
 ## Consignes
@@ -133,7 +133,7 @@ On souhaite expérimenter une autre stratégie, pour limiter les faux positifs :
 
 On souhaite maintenant permettre aux utilisateurs de supprimer des contacts de leur liste (ce qu'ils pourraient souhaiter faire par exemple avant de se déclarer infecté si ils souhaitent ne pas notifier un utilisateur).
 
-![Liste de compétences](img/delete-contacts.png)
+![Suppression d'un contact](img/stopcovid-delete-contacts.png)
 
 Cette copie d'écran a été obtenue avec le code ci-dessous dont vous
 pouvez vous inspirer :

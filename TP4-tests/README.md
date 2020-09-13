@@ -19,7 +19,7 @@ Un corrigé incomplet est disponible dans le répertoire
 
 ## Création d’un projet de test
 
-Pour vous faire la main, on vous fournit un squelette de projet Maven simple dans le répertoire [tp_test](tp_test).
+Pour vous faire la main, vous allez travailler dans un squelette de projet Maven simple dans le répertoire [tp_test](tp_test).
 Ce répertoire a été avec [l'archetype java8-junit5-archetype](https://github.com/thiagoprocaci/java8-junit5-archetype). Commencez par installer l'archétype localement (quand l'archetype est disponible sur le dépôt [Maven central](https://search.maven.org/), cette étape n'est pas nécessaire) :
 
 ```sh
@@ -33,6 +33,8 @@ rm -fr java8-junit5-archetype
 Puis créez votre projet :
 
 ```sh
+mkdir tp_test
+cd tp_test
 mvn archetype:generate \
  -DarchetypeGroupId=com.tbp \
  -DarchetypeArtifactId=java8-junit5-archetype \
@@ -255,7 +257,7 @@ public class CharManipulatorTest {
 
     private CharManipulator manipulator;
     
-    @Before
+    @BeforeEach
     public void setUp() {
         manipulator = new CharManipulator();
     }

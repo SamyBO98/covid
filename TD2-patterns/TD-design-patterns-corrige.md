@@ -57,12 +57,12 @@ Dans cette partie, on se focalisera sur le modèle d'analyse et aura pour object
 </div>
 <!-- END CUT -->
 
-2. En utilisation "normale" du SI, quelles sont les classes dont on créera régulièrement des instances ? Pour chacune de ces classes, quelles sont celles qui seront chargées de les créer ?
+2. En utilisation "normale" du système d'information (SI), quelles sont les classes dont on créera régulièrement des instances ? Pour chacune de ces classes, quelles sont celles qui seront chargées de les créer ?
 
 <!-- BEGIN CUT -->
 <div class="solution">Solution
 <p>Pattern Créateur :<br>
-	- CompagnieAerienne crée des Vol ( expert en information nécessaires à la création)<br>
+	- CompagnieAerienne crée des Vol (expert en information nécessaires à la création)<br>
 	- Client crée des Reservation (expert en information (lui-même, le passager) ; pas sûr que ce soit le client qui confirme/annule la résa)<br>
 	- Reservation crée des Passager (enregistre / possède un champ Passager)<br>
 	- Pour Client, pas de bon candidat -> il faut une Fabrication Pure qui représente le système de réservation de l'agence de voyage
@@ -96,8 +96,8 @@ Dans cette partie, on se focalisera sur le modèle d'analyse et aura pour object
 	1) Regrouper en fonction de la sémantique des objets : 1 package Reservations (Reservation, Client, Passager) & 1 package Vols (CompagnieAerienne, VolGenerique, Vol)<br>
 	2) Regrouper par cycles de vie des objets (VolGenerique est beaucoup plus stable que Vol) : 1 package Reservations (Vol + Reservation, Client, Passager) & 1 package Vols (CompagnieAerienne, VolGenerique)<br><br>
 	Analyse des 2 solutions du point de vue de la navigabilité :<br>
-	Dans la solution 2, l'association CA (affêteur) propose Vol est navigable dans un sens, et Vol doit connaître son VolGenerique (navigable dans l'autre sens)<br>
-	Dans la solution 1, la navigabilité ne se fait que dans un sens (une seule association entre Reservation et Vol ; une Reservation doit connaître son Vol, mais un Vol n'a pas besoin de connaître ses reservation)<br>
+	Dans la solution 2, l'association CompagnieAerienne (affêteur) propose Vol est navigable dans un sens, et Vol doit connaître son VolGenerique (navigable dans l'autre sens)<br>
+	Dans la solution 1, la navigabilité ne se fait que dans un sens (une seule association entre Reservation et Vol ; une Reservation doit connaître son Vol, mais un Vol n'a pas besoin de connaître ses réservations)<br>
 	-> On choisit la solution 1.
 </p>
 </div>
@@ -129,7 +129,7 @@ Dans cette partie, on se focalisera sur le modèle d'analyse et aura pour object
 	  - Escale -> Arret<br>
 	Packages :<br>
 	  - Reservations (package généralisé) : contient une classe abstraite Reservation<br>
-	  - ReservationBus et ReservationVols (packages spécialisés) : contienent des sous-classes spécifiques aux domaines et dépendent de Reservations (héritage) ; dépendent aussi respectivement de VoyagesBus et Vols<br>
+	  - ReservationBus et ReservationVols (packages spécialisés) : contiennent des sous-classes spécifiques aux domaines et dépendent de Reservations (héritage) ; dépendent aussi respectivement de VoyagesBus et Vols<br>
 	  - VoyagesBus et Vols : contiennent les classes modélisées avant ; intègrent Arret et Aeroport ; dépendent de Geographie ; peuvent aussi être généralisés<br>
 	  - Geographie (package réutilisable) : contient uniquement Ville
 </p>
@@ -138,7 +138,7 @@ Dans cette partie, on se focalisera sur le modèle d'analyse et aura pour object
 
 ## Design Patterns
 
-Dans cette partie, on s'intéresse aux classes d'implémentation du SI de l'agence de voyage. On cherchera à mettre en oeuvre des bonnes pratiques de conception afin de favoriser la réutilisabilité et la maintenabilité du code.
+Dans cette partie, on s'intéresse aux classes d'implémentation du SI de l'agence de voyage. On cherchera à mettre en œuvre des bonnes pratiques de conception afin de favoriser la réutilisabilité et la maintenabilité du code.
 
 ### Patterns de création
 
@@ -176,7 +176,7 @@ Dans cette partie, on s'intéresse aux classes d'implémentation du SI de l'agen
 
 ### Patterns de structure
 
-1. Préciser le point d'entrée di SI de l'agence de voyage, spécifiquement dédié à la réservation (pas de gestion des vols)
+1. Préciser le point d'entrée du SI de l'agence de voyage, spécifiquement dédié à la réservation (pas de gestion des vols)
 
 <!-- BEGIN CUT -->
 <div class="solution">Solution
@@ -197,14 +197,14 @@ Dans cette partie, on s'intéresse aux classes d'implémentation du SI de l'agen
 </div>
 <!-- END CUT -->
 
-3. Chaque vol ayant un nombre de sièges défini pour chaque compagnie affrêteuse, comment vérifier qu'il reste des places au moment de la création de la réservation sans augmenter le couplage ?
+3. Chaque vol ayant un nombre de sièges défini pour chaque compagnie affréteuse, comment vérifier qu'il reste des places au moment de la création de la réservation sans augmenter le couplage ?
 
 <!-- BEGIN CUT -->
 <div class="solution">Solution
 <p>Question sous-jacente : qui a la responsabilité de vérifier la disponibilité d'un vol ?<br>
 	Est-ce lié à ouvrir et fermer la réservation (-> compagnie) ou à l'agence de voyage (au moment de la proposition de réservation) ? On part du principe que ce sont 2 choses différentes, c'est donc le SI de l'agence qui s'en charge. Il connaît le client, le passager et le vol, mais n'a pas besoin de connaître la compagnie.<br><br>
 Solution :<br>
-	- pour chacune des compagnies affrêteuses, rajouter une méthode pour récupérer le nombre de places restantes (on suppose que le SI de l'agence est relié à celui de la compagnie et il faut donc que la classe CompagnieAerienne soit reliée à l'API de cette compagnie...)<br>
+	- pour chacune des compagnies affréteuses, rajouter une méthode pour récupérer le nombre de places restantes (on suppose que le SI de l'agence est relié à celui de la compagnie et il faut donc que la classe CompagnieAerienne soit reliée à l'API de cette compagnie...)<br>
 	- ajouter aussi une méthode similaire à Vol qui interroge celle de CompagnieAerienne : pattern Ne pas parler aux inconnus + pas d'augmentation du couplage.<br>
 	- afin que chaque implémentation de CompagnieAérienne ne soit pas dépendante de l'API, mettre en place un pattern Adapter (Fabrication Pure) pour faire l'interface entre les APIs spécifiques des compagnies et l'implémentation commune de CompagnieAerienne dans le SI de l'agence de voyage. Au passage, spécifier cet adapter...
 </p>

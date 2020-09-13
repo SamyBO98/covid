@@ -37,7 +37,7 @@ Dans cette partie, on se focalisera sur le modèle d'analyse et aura pour object
 1. Utiliser les principes d'affectation des responsabilités pour rajouter les opérations correspondant aux phrases 2 et 5.
 
 
-2. En utilisation "normale" du SI, quelles sont les classes dont on créera régulièrement des instances ? Pour chacune de ces classes, quelles sont celles qui seront chargées de les créer ?
+2. En utilisation "normale" du système d'information (SI), quelles sont les classes dont on créera régulièrement des instances ? Pour chacune de ces classes, quelles sont celles qui seront chargées de les créer ?
 
 
 3. Il y a dans le diagramme ci-dessus une classe qui a trop de responsabilités. Comment faire pour améliorer cet élément de la modélisation ?
@@ -60,7 +60,7 @@ Dans cette partie, on se focalisera sur le modèle d'analyse et aura pour object
 
 ## Design Patterns
 
-Dans cette partie, on s'intéresse aux classes d'implémentation du SI de l'agence de voyage. On cherchera à mettre en oeuvre des bonnes pratiques de conception afin de favoriser la réutilisabilité et la maintenabilité du code.
+Dans cette partie, on s'intéresse aux classes d'implémentation du SI de l'agence de voyage. On cherchera à mettre en œuvre des bonnes pratiques de conception afin de favoriser la réutilisabilité et la maintenabilité du code.
 
 ### Patterns de création
 
@@ -75,13 +75,13 @@ Dans cette partie, on s'intéresse aux classes d'implémentation du SI de l'agen
 
 ### Patterns de structure
 
-1. Préciser le point d'entrée di SI de l'agence de voyage, spécifiquement dédié à la réservation (pas de gestion des vols)
+1. Préciser le point d'entrée du SI de l'agence de voyage, spécifiquement dédié à la réservation (pas de gestion des vols)
 
 
 2. Comment faire pour faire en sorte de ne pas ré-entrer toutes les informations sur le passager si celui-ci est également le client ?
 
 
-3. Chaque vol ayant un nombre de sièges défini pour chaque compagnie affrêteuse, comment vérifier qu'il reste des places au moment de la création de la réservation sans augmenter le couplage ?
+3. Chaque vol ayant un nombre de sièges défini pour chaque compagnie affréteuse, comment vérifier qu'il reste des places au moment de la création de la réservation sans augmenter le couplage ?
 
 
 4. L'agence de voyage souhaite proposer une assurance (en option) sur certains de ses voyages. Comment implémenter cela ?

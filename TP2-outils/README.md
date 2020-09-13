@@ -422,7 +422,7 @@ Il y a deux choses à corriger :
 
 - Un test échoue (vous devez avoir le message
   `Tests run: 4, Failures: 1, Errors: 0, Skipped: 0`).
-  Ouvrez le fichier `ApplicantTest.java` et regardez rapidement son
+  Ouvrez le fichier `StopCovidUserModelTest.java` et regardez rapidement son
   contenu. Un commentaire `TODO` vous dit ce qu'il faut corriger :
   faites-le et relancez les tests.
 

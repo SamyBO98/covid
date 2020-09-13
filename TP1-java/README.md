@@ -79,6 +79,10 @@ Si ce n'est pas le cas installez-les. Sous Ubuntu, faire :
 
     apt install git maven
 
+### Configuration de OpenJFX 11 avec Eclipse
+
+Suivre les instructions fournies sur ce [lien](https://gist.github.com/stevenliebregt/bc62a382fc43064136b662ee62172ab3).
+
 ## Création d'un projet sur la forge et récupération du code
 
 Ouvrez dans votre navigateur
@@ -210,7 +214,10 @@ Si vous souhaitez utiliser un IDE, votre IDE favori propose
 probablement une prise en charge de Maven, et configurera donc le
 projet automatiquement depuis le `pom.xml` :
 
-- VSCode : installer le plugin [Java Extension Pack](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack) qui apporte le support du langage Java, de Maven, ... Faire menu File → Open Folder (Ctrl+k Ctrl+o) puis choisir le répertoire. Une section « Maven Projects » doit s'ajouter à la barre latérale de gauche, et vous pourrez sélectionner les actions à effectuer (`exec:java` dans la section `exec` pour lancer l'application).
+- VSCode : installer le plugin [Java Extension Pack](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack) qui apporte le support du langage Java, de Maven, ... Faire menu File → Open Folder (Ctrl+k Ctrl+o) puis choisir le répertoire. Une section « Maven Projects » doit s'ajouter à la barre latérale de gauche, et vous pourrez sélectionner les actions à effectuer (`exec:java` dans la section `exec` pour lancer l'application). Si vous n'avez pas la complétion intelligente et la navigation dans le code, vous devrez sans doute positionner votre variable de configuration `java.home` : faire avec <kbd>Control</kbd> + <kbd>,</kbd>, puis chercher `java.home` et « edit in settings.json ». Au Nautibus, la configuration est :
+<pre>
+"java.home" : "/home/tpetu/m1if01/jdk-11.0.4/"
+</pre>
 
 - Eclipse : installer le plugin [m2e](http://www.eclipse.org/m2e/), puis importer le projet en
   temps que projet Maven (File → Import... → Maven → Existing Maven Projects). Au nautibus, Eclipse
@@ -260,7 +267,7 @@ public enum StopCovidUserStatus {
 }
 ```
 
-puis utilisez ce type énuméré partout où les chaînes `"RISKY"`, `"INFECTED"` et `"NO_RISK"` apparaissent dans votre base de code. Mieux, vous pouvez faire en sorte que l'affichage produise des chaînes plus agréables comme `Risky`, `Infected` et `No Risk` (cf. par exemple https://openclassrooms.com/fr/courses/26832-apprenez-a-programmer-en-java/22162-decouvrez-les-enumerations si vous ne voyez pas comment faire).
+puis utilisez ce type énuméré partout où les chaînes `"RISKY"`, `"INFECTED"` et `"NO_RISK"` apparaissent dans votre base de code. Mieux, vous pouvez faire en sorte que l'affichage produise des chaînes plus agréables comme `Risky`, `Infected` et `No Risk` (cf. par exemple [page 142 du cours « Apprenez àprogrammer en Java »](http://user.oc-static.com/pdf/10601-apprenez-a-programmer-en-java.pdf) si vous ne voyez pas comment faire).
 
 ### Limiter les contacts transmis au serveur
 
@@ -293,4 +300,4 @@ les lisez pas avant d'y avoir réfléchi vous-mêmes.
 
 ## Si vous avez fini ...
 
-Passez au [lab2](../TP2-outils) !
+Passez au [TP2](../TP2-outils) !
