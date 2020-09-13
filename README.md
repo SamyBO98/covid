@@ -174,12 +174,14 @@ Discussion par messagerie instantanée : [mif01-cm](https://go.rocket.chat/invit
 
 Discussion par messagerie instantanée : [mif01-cm](https://go.rocket.chat/invite?host=chat-info.univ-lyon1.fr&path=invite%2Fys6End)
 
+* Vidéo : [<img src="https://mediacenter.univ-lyon1.fr/videos/MEDIA200913140538862/preview.jpg" width="128" height="72" />](https://mediacenter.univ-lyon1.fr/videos/?video=MEDIA200913140538862)
+
 * Transparents : [08-agilite-slides.pdf](08-agilite-slides.pdf)
   (version imprimable : [08-agilite-handout.pdf](08-agilite-handout.pdf))
 
 ### Intervention de Levent Acar (100 % distance, vidéo libre-service)
 
-À venir.
+* Vidéo : [<img src="https://mediacenter.univ-lyon1.fr/videos/MEDIA200913145620567/preview.jpg" width="128" height="72" />](https://mediacenter.univ-lyon1.fr/videos/?video=MEDIA200913145620567)
 
 ## TD 2 (14/9/2020): Design-patterns
 
