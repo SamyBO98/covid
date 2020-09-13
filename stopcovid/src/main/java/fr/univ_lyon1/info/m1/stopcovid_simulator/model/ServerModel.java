@@ -1,27 +1,178 @@
 package fr.univ_lyon1.info.m1.stopcovid_simulator.model;
 
-import java.util.ArrayList;
+import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.CautionLevel;
+import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.Status;
+
+import java.util.HashMap;
 
 public class ServerModel {
-    private final ArrayList<UserModel> users;
+    //region : Very bad messaging simulator -> #VBMS
+    //To replace by a messaging system.
+    private final HashMap<Integer, ClientModel> clientsMessaging;
+
+    /**
+     * Connect to client.
+     *
+     * @param connectionId The connection id of the client.
+     * @param client       The very bad messaging simulator.
+     */
+    public void connect(final int connectionId, final ClientModel client) {
+        clientsMessaging.put(connectionId, client);
+    }
+    //endregion : Very bad messaging simulator
+
+    private final HashMap<Integer, ClientManager> clients;
+    private CautionLevel cautionLevel;
+
+    //region : Initialization
 
     /**
      * Constructor.
-     * `users` : New instance.
      */
-    public ServerModel() {
-        users = new ArrayList<>();
+    public ServerModel() { //#VBMS content
+        clientsMessaging = new HashMap<>();
+        clients = new HashMap<>();
+        cautionLevel = CautionLevel.BASIC;
+    }
+    //endregion : Initialization
+
+    //region : Getters & Setters
+
+    /**
+     * Set `this caution level` with `caution level`.
+     *
+     * @param cautionLevel The caution level to set.
+     */
+    public void setCautionLevel(final CautionLevel cautionLevel) {
+        this.cautionLevel = cautionLevel;
+
+        for (var client : clients.values()) {
+            client.setCautionLevel(cautionLevel);
+        }
+    }
+    //endregion : Getters & Setters
+
+    //region : Messaging handler (#VBMS content)
+
+    /**
+     * Handler of `register state message`.
+     *
+     * @param connectionId The connection id of the sender client.
+     * @param state        The state of sender client to register.
+     */
+    public void handleRegisterState(final int connectionId, final ClientState state) {
+        var client = new ClientManager(state, cautionLevel);
+        clients.put(connectionId, client);
+
+        client.onStateChange().add(this::handleStateChange);
     }
 
     /**
-     * Create a new `UserModel` and add it to `users`.
+     * Handler of `update pseudo message`.
      *
-     * @return The `UserModel` created
+     * @param connectionId The connection id of the sender client.
+     * @param pseudo       The new pseudo of the sender client.
      */
-    public UserModel createUser() {
-        var user = new UserModel();
-        users.add(user);
-
-        return user;
+    public void handleUpdatePseudo(final int connectionId, final String pseudo) {
+        clients.get(connectionId).setPseudo(pseudo);
     }
+
+    /**
+     * Handler of `declare infected message`.
+     *
+     * @param connectionId The connection id of the sender client.
+     */
+    public void handleDeclareInfected(final int connectionId) {
+        clients.get(connectionId).setStatus(Status.INFECTED);
+    }
+
+    /**
+     * Handler of `declare contact message`.
+     *
+     * @param connectionId The connection id of the sender client.
+     * @param pseudo       The pseudo of the client in contact with the sender client.
+     */
+    public void handleDeclareContact(final int connectionId, final String pseudo) {
+        var client0 = clients.get(connectionId);
+        var client1 = getClient(pseudo);
+
+        client0.addContact(client1.getState());
+        client1.addContact(client0.getState());
+    }
+    //endregion
+
+    //region : Messaging sender (#VBMS content)
+
+    /**
+     * Send a `declare risky message` to client.
+     *
+     * @param connectionId The connection id of the client to send.
+     */
+    private void declareRisky(final int connectionId) {
+        clientsMessaging.get(connectionId).handleDeclareRisky();
+    }
+
+    /**
+     * Send a `declare no risk message` to client.
+     *
+     * @param connectionId The connection id of the client to send.
+     */
+    private void declareNoRisk(final int connectionId) {
+        clientsMessaging.get(connectionId).handleDeclareNoRisk();
+    }
+    //endregion : Messaging sender
+
+    //region : Event handler
+
+    /**
+     * Handler of `clients state change`.
+     * Declare the change of status to the client.
+     *
+     * @param pseudo The pseudo of the client who changed.
+     */
+    private void handleStateChange(final String pseudo) {
+        var client = getClient(pseudo);
+        var connectionId = getConnectionId(client);
+
+        switch (client.getState().getStatus()) {
+            case NO_RISK:
+                declareNoRisk(connectionId);
+                return;
+            case RISKY:
+                declareRisky(connectionId);
+                return;
+            default:
+                throw new IllegalArgumentException();
+        }
+    }
+    //endregion : Event handler
+
+    //region : Sub-methods
+
+    /**
+     * @param pseudo The pseudo of client to search for.
+     * @return the client with `pseudo`.
+     */
+    private ClientManager getClient(final String pseudo) {
+        for (var client : clients.values()) {
+            if (client.getState().getPseudo().equals(pseudo)) {
+                return client;
+            }
+        }
+        throw new IllegalArgumentException();
+    }
+
+    /**
+     * @param client The client with the connection id to search for.
+     * @return the `client connection id`.
+     */
+    private int getConnectionId(final ClientManager client) {
+        for (var connectionId : clients.keySet()) {
+            if (clients.get(connectionId) == client) {
+                return connectionId;
+            }
+        }
+        throw new IllegalArgumentException();
+    }
+    //endregion : Sub-methods
 }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+
+
+<Button fx:id="openServerAppButton" mnemonicParsing="false" styleClass="btn-primary" text="Open Server App"
+        stylesheets="@../../css/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"/>

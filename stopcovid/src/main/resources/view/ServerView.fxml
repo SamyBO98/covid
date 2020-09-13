@@ -3,34 +3,33 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../css/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <left>
-        <VBox prefWidth="450.0" BorderPane.alignment="CENTER">
+<?import javafx.collections.FXCollections?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="405.0"
+            prefWidth="720.0" stylesheets="@../css/Main.css" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1">
+    <top>
+        <Label text="Stop COVID - Server" BorderPane.alignment="CENTER"/>
+    </top>
+    <bottom>
+        <Label styleClass="h4" text="Créée par BESSAADI Ilyess &amp; BEN OTHMAN Samy" BorderPane.alignment="CENTER"/>
+    </bottom>
+    <center>
+        <VBox BorderPane.alignment="CENTER">
             <children>
-            <Label styleClass="h2" text="Users :" />
-                <Button fx:id="addUserButton" mnemonicParsing="false" styleClass="btn-primary" text="Add user" />
-            <VBox fx:id="userContainer" prefHeight="194.0" prefWidth="450.0" />
+                <HBox>
+                    <children>
+                        <ComboBox fx:id="cautionLevelComboBox" promptText="Select caution level"
+                                  styleClass="split-menu-btn">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                        <Button fx:id="changeCautionLevelButton" mnemonicParsing="false" styleClass="btn-primary"
+                                text="Change caution level"/>
+                    </children>
+                </HBox>
             </children>
         </VBox>
-   </left>
-   <right>
-      <VBox prefWidth="450.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label styleClass="h2" text="Options :" />
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label styleClass="h4" text="Strategy : " />
-                  <MenuButton mnemonicParsing="false" styleClass="split-menu-btn-primary" text="MenuButton">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Action 1" />
-                      <MenuItem mnemonicParsing="false" text="Action 2" />
-                    </items>
-                  </MenuButton>
-               </children>
-            </HBox>
-         </children></VBox>
-   </right>
-   <top>
-      <Label styleClass="h1" text="Stop COVID : Simulator" BorderPane.alignment="CENTER" />
-   </top>
+    </center>
 </BorderPane>

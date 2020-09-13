@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0"
+            prefWidth="1280.0" stylesheets="@../../css/Main.css" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1">
+    <top>
+        <Label styleClass="h1" text="Stop COVID : Simulator" BorderPane.alignment="CENTER"/>
+    </top>
+    <bottom>
+        <Label styleClass="h4" text="Créée par BESSAADI Ilyess &amp; BEN OTHMAN Samy" BorderPane.alignment="CENTER"/>
+    </bottom>
+    <center>
+        <VBox BorderPane.alignment="CENTER">
+            <children>
+                <HBox fx:id="serverControlPanelContainer" prefHeight="100.0">
+                    <children>
+                        <Label styleClass="h2" text="Server : "/>
+                        <Button fx:id="serverLauncherButton" mnemonicParsing="false" styleClass="btn-success"
+                                text="Start !"/>
+                    </children>
+                </HBox>
+                <VBox prefHeight="550.0">
+                    <children>
+                        <HBox prefHeight="100.0">
+                            <children>
+                                <Label styleClass="h2" text="Client : "/>
+                                <Button fx:id="addClientButton" disable="true" mnemonicParsing="false"
+                                        styleClass="btn-primary" text="Add Client"/>
+                            </children>
+                        </HBox>
+                        <VBox fx:id="clientControlPanelsContainer" prefHeight="400.0"/>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>

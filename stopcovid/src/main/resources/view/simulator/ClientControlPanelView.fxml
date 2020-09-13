@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0"
+      prefWidth="300.0" stylesheets="@../../css/Main.css" xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label fx:id="pseudoLabel" text="Pseudo : "/>
+        <Label fx:id="statusLabel" text="Status : "/>
+        <HBox>
+            <children>
+                <ComboBox fx:id="meetComboBox" prefWidth="100.0" promptText="Select user" styleClass="split-menu-btn">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+                <Button fx:id="meetButton" mnemonicParsing="false" prefWidth="100.0" styleClass="btn-primary"
+                        text="Meet !"/>
+            </children>
+        </HBox>
+        <Button fx:id="openClientAppButton" mnemonicParsing="false" styleClass="btn-primary" text="Open Client App"/>
+        <Button fx:id="removeClientButton" mnemonicParsing="false" styleClass="btn-danger" text="Remove client"/>
+    </children>
+</VBox>

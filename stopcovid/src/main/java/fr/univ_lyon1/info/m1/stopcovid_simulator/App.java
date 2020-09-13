@@ -1,6 +1,6 @@
 package fr.univ_lyon1.info.m1.stopcovid_simulator;
 
-import fr.univ_lyon1.info.m1.stopcovid_simulator.controller.ServerController;
+import fr.univ_lyon1.info.m1.stopcovid_simulator.controller.simulator.SimulatorController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -27,10 +27,10 @@ public class App extends Application {
     }
 
     private Scene createMainScene() throws IOException {
-        var mainController = new ServerController();
+        var mainController = new SimulatorController();
 
         var mainFXMLLoader = new FXMLLoader(
-                getClass().getResource("/view/ServerView.fxml")
+                getClass().getResource("/view/simulator/SimulatorView.fxml")
         );
         mainFXMLLoader.setController(mainController);
 

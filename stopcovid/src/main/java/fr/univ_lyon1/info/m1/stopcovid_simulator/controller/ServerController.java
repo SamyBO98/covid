@@ -1,57 +1,57 @@
 package fr.univ_lyon1.info.m1.stopcovid_simulator.controller;
 
-import fr.univ_lyon1.info.m1.stopcovid_simulator.controller.prefabs.UserBoxController;
+import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.CautionLevel;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.model.ServerModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.ComboBox;
 
-import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ServerController implements Initializable {
     @FXML
-    private Button addUserButton;
+    private ComboBox<CautionLevel> cautionLevelComboBox;
     @FXML
-    private VBox userContainer;
+    private Button changeCautionLevelButton;
 
     private final ServerModel server;
-    private final ArrayList<UserBoxController> userBoxControllers;
+
+    //region : Initialization
 
     /**
      * Constructor.
-     * `server` : New instance.
-     * `userBoxControllers` : New instance.
+     *
+     * @param server The server to control.
      */
-    public ServerController() {
-        server = new ServerModel();
-        userBoxControllers = new ArrayList<>();
+    public ServerController(final ServerModel server) {
+        this.server = server;
     }
 
     @Override
     public void initialize(final URL url, final ResourceBundle resourceBundle) {
-        addUserButton.setOnAction(this::addUser);
+        cautionLevelComboBox.getItems().add(CautionLevel.UNWARY);
+        cautionLevelComboBox.getItems().add(CautionLevel.BASIC);
+        cautionLevelComboBox.getItems().add(CautionLevel.WARY);
+
+        changeCautionLevelButton.setOnAction(this::handleChangeCautionLevel);
     }
+    //endregion : Initialization
 
-    private void addUser(final ActionEvent actionEvent) {
-        var userBoxController = new UserBoxController(server.createUser());
+    //region : FX handler
 
-        var userBoxFXMLLoader = new FXMLLoader(
-                getClass().getResource("/view/prefabs/UserBoxView.fxml")
-        );
-        userBoxFXMLLoader.setController(userBoxController);
-
-        try {
-            userContainer.getChildren().add(userBoxFXMLLoader.load());
-        } catch (IOException e) {
-            e.printStackTrace();
+    /**
+     * Handler of `change caution level button`.
+     * Change the `caution level` with the one selected in the `caution level combo box`.
+     *
+     * @param event JavaFX event.
+     */
+    private void handleChangeCautionLevel(final ActionEvent event) {
+        if (cautionLevelComboBox.getValue() != null) {
+            server.setCautionLevel(cautionLevelComboBox.getValue());
         }
-
-        userBoxControllers.add(userBoxController);
     }
+    //endregion : FX handler
 }
