@@ -8,7 +8,7 @@
       prefWidth="300.0" stylesheets="@../../css/Main.css" xmlns="http://javafx.com/javafx/11.0.1"
       xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="pseudoLabel" text="Pseudo : "/>
+        <Label fx:id="idLabel" text="Id : "/>
         <Label fx:id="statusLabel" text="Status : "/>
         <HBox>
             <children>

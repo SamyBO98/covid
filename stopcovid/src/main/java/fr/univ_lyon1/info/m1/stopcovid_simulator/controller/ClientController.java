@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
 
 public class ClientController implements Initializable {
     @FXML
-    private Label pseudoLabel;
+    private Label idLabel;
     @FXML
     private Label statusLabel;
     @FXML
@@ -34,10 +34,10 @@ public class ClientController implements Initializable {
 
     @Override
     public void initialize(final URL url, final ResourceBundle resourceBundle) {
-        client.onPseudoChange().add(this::handleUpdatePseudo);
+        client.onIdChange().add(this::handleUpdateId);
         client.onStatusChange().add(this::handleUpdateStatus);
 
-        pseudoLabel.setText(String.format("Pseudo : %s", client.getPseudo()));
+        idLabel.setText(String.format("Id : %s", client.getId()));
         statusLabel.setText(String.format("Status : %s", client.getStatus()));
 
         declareInfectedButton.setOnAction(this::handleDeclareInfected);
@@ -60,13 +60,13 @@ public class ClientController implements Initializable {
     //region : Event handler
 
     /**
-     * Handler of `client pseudo change`.
-     * Updates the `pseudo label` with the `pseudo`.
+     * Handler of `client id change`.
+     * Updates the `id label` with the `id`.
      *
-     * @param pseudo The new pseudo of `client`.
+     * @param id The new id of `client`.
      */
-    private void handleUpdatePseudo(final String pseudo) {
-        pseudoLabel.setText(String.format("Pseudo : %s", pseudo));
+    private void handleUpdateId(final String id) {
+        idLabel.setText(String.format("Id : %s", id));
     }
 
     /**

@@ -27,7 +27,7 @@ public class ClientModel {
     //endregion
 
     private final ClientState state;
-    private final ArrayList<String> tempContactPseudos;
+    private final ArrayList<String> tempContactIds;
 
     //region : Initialization
 
@@ -36,17 +36,17 @@ public class ClientModel {
      */
     public ClientModel() {
         state = new ClientState();
-        tempContactPseudos = new ArrayList<>();
+        tempContactIds = new ArrayList<>();
     }
     //endregion : Initialization
 
     //region : Getters & Setters
 
     /**
-     * @return the `state pseudo`.
+     * @return the `state id`.
      */
-    public String getPseudo() {
-        return state.getPseudo();
+    public String getId() {
+        return state.getId();
     }
 
     /**
@@ -57,10 +57,10 @@ public class ClientModel {
     }
 
     /**
-     * @return the `state pseudo change`.
+     * @return the `state id change`.
      */
-    public Event.With1ParamAndVoid<String> onPseudoChange() {
-        return state.onPseudoChange();
+    public Event.With1ParamAndVoid<String> onIdChange() {
+        return state.onIdChange();
     }
 
     /**
@@ -74,15 +74,15 @@ public class ClientModel {
     //region : Action
 
     /**
-     * Meet the client with `pseudo`.
+     * Meet the client with `id`.
      *
-     * @param pseudo The pseudo of the client to met.
+     * @param id The id of the client to met.
      */
-    public void meet(final String pseudo) {
-        if (tempContactPseudos.contains(pseudo)) {
-            declareContact(pseudo);
+    public void meet(final String id) {
+        if (tempContactIds.contains(id)) {
+            declareContact(id);
         } else {
-            tempContactPseudos.add(pseudo);
+            tempContactIds.add(id);
         }
     }
     //endregion : Action
@@ -121,11 +121,11 @@ public class ClientModel {
     }
 
     /**
-     * Send a `update pseudo message` to server.
+     * Send a `update id message` to server.
      */
-    private void updatePseudo() {
-        state.setPseudo(UUID.randomUUID().toString());
-        serverMessaging.handleUpdatePseudo(connectionId, state.getPseudo());
+    private void updateId() {
+        state.setId(UUID.randomUUID().toString());
+        serverMessaging.handleUpdateId(connectionId, state.getId());
     }
 
     /**
@@ -139,10 +139,10 @@ public class ClientModel {
     /**
      * Send a `declare contact message` to server.
      *
-     * @param pseudo The pseudo of the client in contact.
+     * @param id The id of the client in contact.
      */
-    private void declareContact(final String pseudo) {
-        serverMessaging.handleDeclareContact(connectionId, pseudo);
+    private void declareContact(final String id) {
+        serverMessaging.handleDeclareContact(connectionId, id);
     }
     //endregion : Messaging sender
 }

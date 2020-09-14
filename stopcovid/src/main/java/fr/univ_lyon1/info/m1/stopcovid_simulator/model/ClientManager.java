@@ -50,12 +50,12 @@ public class ClientManager {
     }
 
     /**
-     * Set the `state pseudo` with `pseudo`.
+     * Set the `state id` with `id`.
      *
-     * @param pseudo The pseudo to set.
+     * @param id The id to set.
      */
-    public void setPseudo(final String pseudo) {
-        state.setPseudo(pseudo);
+    public void setId(final String id) {
+        state.setId(id);
     }
 
     /**
@@ -104,7 +104,7 @@ public class ClientManager {
         var newStatus = evaluateStatus();
         if (state.getStatus() != newStatus) {
             state.setStatus(newStatus);
-            stateChangeDelegate.invokeAndAggregateExceptions(state.getPseudo());
+            stateChangeDelegate.invokeAndAggregateExceptions(state.getId());
         }
     }
 

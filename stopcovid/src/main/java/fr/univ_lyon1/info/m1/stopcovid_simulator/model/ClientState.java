@@ -7,12 +7,12 @@ import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.Status;
 import java.util.UUID;
 
 public class ClientState {
-    private String pseudo;
+    private String id;
     private Status status;
 
-    private final Delegate.With1ParamAndVoid<String> pseudoChangeDelegate;
+    private final Delegate.With1ParamAndVoid<String> idChangeDelegate;
     private final Delegate.With1ParamAndVoid<Status> statusChangeDelegate;
-    private final Event.With1ParamAndVoid<String> pseudoChangeEvent;
+    private final Event.With1ParamAndVoid<String> idChangeEvent;
     private final Event.With1ParamAndVoid<Status> statusChangeEvent;
 
     //region : Initialization
@@ -21,12 +21,12 @@ public class ClientState {
      * Constructor.
      */
     public ClientState() {
-        pseudo = UUID.randomUUID().toString();
+        id = UUID.randomUUID().toString();
         status = Status.NO_RISK;
 
-        pseudoChangeDelegate = new Delegate.With1ParamAndVoid<>();
+        idChangeDelegate = new Delegate.With1ParamAndVoid<>();
         statusChangeDelegate = new Delegate.With1ParamAndVoid<>();
-        pseudoChangeEvent = new Event.With1ParamAndVoid<>(pseudoChangeDelegate);
+        idChangeEvent = new Event.With1ParamAndVoid<>(idChangeDelegate);
         statusChangeEvent = new Event.With1ParamAndVoid<>(statusChangeDelegate);
     }
 
@@ -36,12 +36,12 @@ public class ClientState {
      * @param source The source to copy.
      */
     public ClientState(final ClientState source) {
-        pseudo = source.pseudo;
+        id = source.id;
         status = source.status;
 
-        pseudoChangeDelegate = new Delegate.With1ParamAndVoid<>();
+        idChangeDelegate = new Delegate.With1ParamAndVoid<>();
         statusChangeDelegate = new Delegate.With1ParamAndVoid<>();
-        pseudoChangeEvent = new Event.With1ParamAndVoid<>(pseudoChangeDelegate);
+        idChangeEvent = new Event.With1ParamAndVoid<>(idChangeDelegate);
         statusChangeEvent = new Event.With1ParamAndVoid<>(statusChangeDelegate);
     }
     //endregion : Initialization
@@ -49,10 +49,10 @@ public class ClientState {
     //region : Getters & Setters
 
     /**
-     * @return `this pseudo`.
+     * @return `this id`.
      */
-    public String getPseudo() {
-        return pseudo;
+    public String getId() {
+        return id;
     }
 
     /**
@@ -63,10 +63,10 @@ public class ClientState {
     }
 
     /**
-     * @return `this pseudo change event`.
+     * @return `this id change event`.
      */
-    public Event.With1ParamAndVoid<String> onPseudoChange() {
-        return pseudoChangeEvent;
+    public Event.With1ParamAndVoid<String> onIdChange() {
+        return idChangeEvent;
     }
 
     /**
@@ -77,13 +77,13 @@ public class ClientState {
     }
 
     /**
-     * Set `this pseudo` with `pseudo`.
+     * Set `this id` with `id`.
      *
-     * @param pseudo The pseudo to set.
+     * @param id The id to set.
      */
-    public void setPseudo(final String pseudo) {
-        this.pseudo = pseudo;
-        pseudoChangeDelegate.invokeAndAggregateExceptions(pseudo);
+    public void setId(final String id) {
+        this.id = id;
+        idChangeDelegate.invokeAndAggregateExceptions(id);
     }
 
     /**

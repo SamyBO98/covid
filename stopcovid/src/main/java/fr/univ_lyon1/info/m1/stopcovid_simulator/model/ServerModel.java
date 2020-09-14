@@ -68,13 +68,13 @@ public class ServerModel {
     }
 
     /**
-     * Handler of `update pseudo message`.
+     * Handler of `update id message`.
      *
      * @param connectionId The connection id of the sender client.
-     * @param pseudo       The new pseudo of the sender client.
+     * @param id           The new id of the sender client.
      */
-    public void handleUpdatePseudo(final int connectionId, final String pseudo) {
-        clients.get(connectionId).setPseudo(pseudo);
+    public void handleUpdateId(final int connectionId, final String id) {
+        clients.get(connectionId).setId(id);
     }
 
     /**
@@ -90,11 +90,11 @@ public class ServerModel {
      * Handler of `declare contact message`.
      *
      * @param connectionId The connection id of the sender client.
-     * @param pseudo       The pseudo of the client in contact with the sender client.
+     * @param id           The id of the client in contact with the sender client.
      */
-    public void handleDeclareContact(final int connectionId, final String pseudo) {
+    public void handleDeclareContact(final int connectionId, final String id) {
         var client0 = clients.get(connectionId);
-        var client1 = getClient(pseudo);
+        var client1 = getClient(id);
 
         client0.addContact(client1.getState());
         client1.addContact(client0.getState());
@@ -128,10 +128,10 @@ public class ServerModel {
      * Handler of `clients state change`.
      * Declare the change of status to the client.
      *
-     * @param pseudo The pseudo of the client who changed.
+     * @param id The id of the client who changed.
      */
-    private void handleStateChange(final String pseudo) {
-        var client = getClient(pseudo);
+    private void handleStateChange(final String id) {
+        var client = getClient(id);
         var connectionId = getConnectionId(client);
 
         switch (client.getState().getStatus()) {
@@ -150,12 +150,12 @@ public class ServerModel {
     //region : Sub-methods
 
     /**
-     * @param pseudo The pseudo of client to search for.
-     * @return the client with `pseudo`.
+     * @param id The id of client to search for.
+     * @return the client with `id`.
      */
-    private ClientManager getClient(final String pseudo) {
+    private ClientManager getClient(final String id) {
         for (var client : clients.values()) {
-            if (client.getState().getPseudo().equals(pseudo)) {
+            if (client.getState().getId().equals(id)) {
                 return client;
             }
         }
