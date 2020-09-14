@@ -201,8 +201,8 @@ Discussion par messagerie instantanée : [mif01-cm](https://go.rocket.chat/invit
 
 * Vidéo : Vidéo : [<img src="https://mediacenter.univ-lyon1.fr/videos/MEDIA200817132953478/preview.jpg" width="128" height="72" />](https://mediacenter.univ-lyon1.fr/videos/?video=MEDIA200817132953478)
 
-* Transparents : [05-ethics-slides.pdf](05-ethics-slides.pdf)
-  (version imprimable : [05-ethics-handout.pdf](05-ethics-handout.pdf))
+* Transparents : [10-ethics-slides.pdf](10-ethics-slides.pdf)
+  (version imprimable : [10-ethics-handout.pdf](10-ethics-handout.pdf))
 
 ## CM 10: Gestion de projet en entreprise (hybride "comodal", des étudiants en présentiel et d'autres en visio)
 
