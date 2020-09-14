@@ -10,16 +10,14 @@
         <Label styleClass="h1" text="Stop COVID - Client" BorderPane.alignment="CENTER"/>
     </top>
     <bottom>
-        <Label styleClass="h4" text="Créée par BESSAADI Ilyess &amp; BEN OTHMAN Samy" BorderPane.alignment="CENTER"/>
+        <Label styleClass="h4" text="Created by BESSAADI Ilyess &amp; BEN OTHMAN Samy." BorderPane.alignment="CENTER"/>
     </bottom>
     <center>
         <VBox BorderPane.alignment="CENTER">
-            <children>
-                <Label fx:id="idLabel" styleClass="h2" text="Id :"/>
-                <Label fx:id="statusLabel" styleClass="h2" text="Status :"/>
-                <Button fx:id="declareInfectedButton" mnemonicParsing="false" styleClass="btn-danger"
-                        text="Declare infected"/>
-            </children>
+            <Label fx:id="idLabel" styleClass="h2" text="Id :"/>
+            <Label fx:id="statusLabel" styleClass="h2" text="Status :"/>
+            <Button fx:id="declareInfectedButton" mnemonicParsing="false" styleClass="btn-danger"
+                    text="Declare infected"/>
         </VBox>
     </center>
 </BorderPane>

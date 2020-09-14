@@ -5,37 +5,31 @@
 <?import javafx.scene.layout.*?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0"
-      prefWidth="300.0" stylesheets="@../../css/Main.css" xmlns="http://javafx.com/javafx/11.0.1"
+      prefWidth="400.0" stylesheets="@../../css/Main.css" xmlns="http://javafx.com/javafx/11.0.1"
       xmlns:fx="http://javafx.com/fxml/1">
-    <children>
-        <Label fx:id="idLabel" text="Id : "/>
-        <Label fx:id="statusLabel" text="Status : "/>
-        <HBox>
-            <children>
-                <ComboBox fx:id="meetComboBox" prefWidth="100.0" promptText="Select user" styleClass="split-menu-btn">
-                    <items>
-                        <FXCollections fx:factory="observableArrayList">
-                        </FXCollections>
-                    </items>
-                </ComboBox>
-                <Button fx:id="meetButton" mnemonicParsing="false" prefWidth="100.0" styleClass="btn-primary"
-                        text="Meet !"/>
-            </children>
-        </HBox>
-        <HBox>
-            <children>
-                <ComboBox fx:id="sendingStrategyComboBox" prefWidth="100.0" promptText="Select strategy"
-                          styleClass="split-menu-btn">
-                    <items>
-                        <FXCollections fx:factory="observableArrayList">
-                        </FXCollections>
-                    </items>
-                </ComboBox>
-                <Button fx:id="sendingStrategyButton" mnemonicParsing="false" prefWidth="100.0" styleClass="btn-primary"
-                        text="Change strategy"/>
-            </children>
-        </HBox>
-        <Button fx:id="openClientAppButton" mnemonicParsing="false" styleClass="btn-primary" text="Open Client App"/>
-        <Button fx:id="removeClientButton" mnemonicParsing="false" styleClass="btn-danger" text="Remove client"/>
-    </children>
+    <Label fx:id="idLabel" text="Id : "/>
+    <Label fx:id="statusLabel" text="Status : "/>
+    <HBox>
+        <ComboBox fx:id="meetComboBox" prefWidth="150.0" promptText="Select user" styleClass="split-menu-btn">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                </FXCollections>
+            </items>
+        </ComboBox>
+        <Button fx:id="meetButton" mnemonicParsing="false" prefWidth="150.0" styleClass="btn-primary"
+                text="Meet !"/>
+    </HBox>
+    <HBox>
+        <ComboBox fx:id="sendingStrategyComboBox" prefWidth="150.0" promptText="Select strategy"
+                  styleClass="split-menu-btn">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                </FXCollections>
+            </items>
+        </ComboBox>
+        <Button fx:id="sendingStrategyButton" mnemonicParsing="false" prefWidth="150.0" styleClass="btn-primary"
+                text="Change strategy"/>
+    </HBox>
+    <Button fx:id="openClientAppButton" mnemonicParsing="false" styleClass="btn-primary" text="Open Client App"/>
+    <Button fx:id="removeClientButton" mnemonicParsing="false" styleClass="btn-danger" text="Remove client"/>
 </VBox>
