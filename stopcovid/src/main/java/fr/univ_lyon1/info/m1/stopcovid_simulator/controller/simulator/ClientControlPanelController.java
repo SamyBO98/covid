@@ -2,6 +2,7 @@ package fr.univ_lyon1.info.m1.stopcovid_simulator.controller.simulator;
 
 import fr.univ_lyon1.info.m1.stopcovid_simulator.controller.ClientController;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.model.ClientModel;
+import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.SendingStrategy;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.Status;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +24,10 @@ public class ClientControlPanelController implements Initializable {
     private Label idLabel;
     @FXML
     private Label statusLabel;
+    @FXML
+    private ComboBox<SendingStrategy> sendingStrategyComboBox;
+    @FXML
+    private Button sendingStrategyButton;
     @FXML
     private Button meetButton;
     @FXML
@@ -51,6 +56,13 @@ public class ClientControlPanelController implements Initializable {
         client.onStatusChange().add(this::handleUpdateStatus);
 
         meetButton.setOnAction(this::handleMeet);
+
+        sendingStrategyComboBox.getItems().add(SendingStrategy.ALL);
+        sendingStrategyComboBox.getItems().add(SendingStrategy.REPEATED);
+        sendingStrategyComboBox.getItems().add(SendingStrategy.FREQUENT);
+
+        sendingStrategyButton.setOnAction(this::handleChangeSendingStrategy);
+
         openClientAppButton.setOnAction(this::handleOpenClientApp);
 
         handleUpdateId(client.getId());
@@ -86,6 +98,19 @@ public class ClientControlPanelController implements Initializable {
     //endregion : Action
 
     //region : FX handler
+
+    /**
+     * Handler of `sending strategy button`.
+     * Change the `sending strategy` with the one selected in the `sending strategy combo box`.
+     *
+     * @param event JavaFX event.
+     */
+    private void handleChangeSendingStrategy(final ActionEvent event) {
+        var sendingStrategy = sendingStrategyComboBox.getValue();
+        if (sendingStrategy != null) {
+            client.setSendingStrategy(sendingStrategy);
+        }
+    }
 
     /**
      * Handler of `meet button`.
