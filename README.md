@@ -187,7 +187,7 @@ Discussion par messagerie instantanée : [mif01-cm](https://go.rocket.chat/invit
 
 * Discussion par messagerie instantanée : [mif01-td-tp](https://go.rocket.chat/invite?host=chat-info.univ-lyon1.fr&path=invite%2FuD5wxp)
 
-* [TD2-scrum/ExerciceAgile.pdf](TD2-scrum/ExerciceAgile.pdf)
+* [TD2-patterns/](TD2-patterns/)
 
 ## TP 6 & 7 (15/9/2020 et 16/9/2020): tests
 
