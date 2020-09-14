@@ -1,9 +1,10 @@
 package fr.univ_lyon1.info.m1.stopcovid_simulator.model;
 
 import com.github.hervian.reflection.Event;
+import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.SendingStrategy;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.Status;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 
 public class ClientModel {
@@ -27,7 +28,8 @@ public class ClientModel {
     //endregion
 
     private final ClientState state;
-    private final ArrayList<String> tempContactIds;
+    private final HashMap<String, Integer> tempContacts;
+    private SendingStrategy sendingStrategy;
 
     //region : Initialization
 
@@ -36,7 +38,8 @@ public class ClientModel {
      */
     public ClientModel() {
         state = new ClientState();
-        tempContactIds = new ArrayList<>();
+        tempContacts = new HashMap<>();
+        sendingStrategy = SendingStrategy.REPEATED;
     }
     //endregion : Initialization
 
@@ -69,6 +72,15 @@ public class ClientModel {
     public Event.With1ParamAndVoid<Status> onStatusChange() {
         return state.onStatusChange();
     }
+
+    /**
+     * Set `this sending strategy` with `sending strategy`.
+     *
+     * @param sendingStrategy The sending strategy to set.
+     */
+    public void setSendingStrategy(final SendingStrategy sendingStrategy) {
+        this.sendingStrategy = sendingStrategy;
+    }
     //endregion : Getters & Setters
 
     //region : Action
@@ -79,10 +91,15 @@ public class ClientModel {
      * @param id The id of the client to met.
      */
     public void meet(final String id) {
-        if (tempContactIds.contains(id)) {
-            declareContact(id);
+        if (tempContacts.containsKey(id)) {
+            tempContacts.replace(id, tempContacts.get(id) + 1);
         } else {
-            tempContactIds.add(id);
+            tempContacts.put(id, 1);
+        }
+
+        var contactValue = tempContacts.get(id);
+        if (contactValue >= sendingStrategy.getSendingThreshold()) {
+            declareContact(id, contactValue);
         }
     }
     //endregion : Action
@@ -139,10 +156,11 @@ public class ClientModel {
     /**
      * Send a `declare contact message` to server.
      *
-     * @param id The id of the client in contact.
+     * @param id           The id of the client in contact.
+     * @param contactValue The number of times they contacted.
      */
-    private void declareContact(final String id) {
-        serverMessaging.handleDeclareContact(connectionId, id);
+    private void declareContact(final String id, final int contactValue) {
+        serverMessaging.handleDeclareContact(connectionId, id, contactValue);
     }
     //endregion : Messaging sender
 }

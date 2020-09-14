@@ -2,6 +2,7 @@ package fr.univ_lyon1.info.m1.stopcovid_simulator.controller.simulator;
 
 import fr.univ_lyon1.info.m1.stopcovid_simulator.controller.ClientController;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.model.ClientModel;
+import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.SendingStrategy;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.Status;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,9 +25,13 @@ public class ClientControlPanelController implements Initializable {
     @FXML
     private Label statusLabel;
     @FXML
+    private ComboBox<String> meetComboBox;
+    @FXML
     private Button meetButton;
     @FXML
-    private ComboBox<String> meetComboBox;
+    private ComboBox<SendingStrategy> sendingStrategyComboBox;
+    @FXML
+    private Button sendingStrategyButton;
     @FXML
     private Button openClientAppButton;
     @FXML
@@ -50,11 +55,18 @@ public class ClientControlPanelController implements Initializable {
         client.onIdChange().add(this::handleUpdateId);
         client.onStatusChange().add(this::handleUpdateStatus);
 
-        meetButton.setOnAction(this::handleMeet);
-        openClientAppButton.setOnAction(this::handleOpenClientApp);
+        idLabel.setText(String.format("Id : %s", client.getId()));
+        statusLabel.setText(String.format("Status : %s", client.getStatus()));
 
-        handleUpdateId(client.getId());
-        handleUpdateStatus(client.getStatus());
+        meetButton.setOnAction(this::handleMeet);
+
+        sendingStrategyComboBox.getItems().add(SendingStrategy.ALL);
+        sendingStrategyComboBox.getItems().add(SendingStrategy.REPEATED);
+        sendingStrategyComboBox.getItems().add(SendingStrategy.FREQUENT);
+
+        sendingStrategyButton.setOnAction(this::handleChangeSendingStrategy);
+
+        openClientAppButton.setOnAction(this::handleOpenClientApp);
     }
     //endregion : Initialization
 
@@ -86,6 +98,19 @@ public class ClientControlPanelController implements Initializable {
     //endregion : Action
 
     //region : FX handler
+
+    /**
+     * Handler of `sending strategy button`.
+     * Change the `sending strategy` with the one selected in the `sending strategy combo box`.
+     *
+     * @param event JavaFX event.
+     */
+    private void handleChangeSendingStrategy(final ActionEvent event) {
+        var sendingStrategy = sendingStrategyComboBox.getValue();
+        if (sendingStrategy != null) {
+            client.setSendingStrategy(sendingStrategy);
+        }
+    }
 
     /**
      * Handler of `meet button`.

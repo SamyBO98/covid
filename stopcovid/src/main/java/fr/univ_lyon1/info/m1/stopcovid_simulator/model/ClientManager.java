@@ -2,15 +2,35 @@ package fr.univ_lyon1.info.m1.stopcovid_simulator.model;
 
 import com.github.hervian.reflection.Delegate;
 import com.github.hervian.reflection.Event;
-import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.Status;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.CautionLevel;
+import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.Status;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ClientManager {
+    private class Contact {
+        private int contactSent;
+        private int contactReceived;
+
+        /**
+         * Constructor.
+         */
+        Contact() {
+            contactSent = 0;
+            contactReceived = 0;
+        }
+
+        /**
+         * @return the total contacts value.
+         */
+        public int getValue() {
+            return contactSent + contactReceived;
+        }
+    }
+
     private final ClientState state;
     private CautionLevel cautionLevel;
-    private final ArrayList<ClientState> contacts;
+    private final HashMap<ClientState, Contact> contacts;
 
     private final Delegate.With1ParamAndVoid<String> stateChangeDelegate;
     private final Event.With1ParamAndVoid<String> stateChangeEvent;
@@ -26,7 +46,7 @@ public class ClientManager {
     public ClientManager(final ClientState state, final CautionLevel cautionLevel) {
         this.state = new ClientState(state);
         this.cautionLevel = cautionLevel;
-        contacts = new ArrayList<>();
+        contacts = new HashMap<>();
 
         stateChangeDelegate = new Delegate.With1ParamAndVoid<>();
         stateChangeEvent = new Event.With1ParamAndVoid<>(stateChangeDelegate);
@@ -81,14 +101,32 @@ public class ClientManager {
     //region : Action
 
     /**
-     * Add a `contact` to the client to manage.
+     * Add a `client in contact` to the client to manage.
      *
-     * @param contact The state of the client in contact.
+     * @param clientInContact The state of the client in contact.
+     * @param contactValue    The number of times they contacted.
+     * @param isSent          The client to manage is the one who sent the contact.
      */
-    public void addContact(final ClientState contact) {
-        contacts.add(contact);
+    public void addContact(final ClientState clientInContact, final int contactValue,
+                           final boolean isSent) {
+        if (contacts.containsKey(clientInContact)) {
+            if (isSent) {
+                contacts.get(clientInContact).contactSent = contactValue;
+            } else {
+                contacts.get(clientInContact).contactReceived = contactValue;
+            }
+        } else {
+            var contact = new Contact();
+            if (isSent) {
+                contact.contactSent = contactValue;
+            } else {
+                contact.contactReceived = contactValue;
+            }
+            contacts.put(clientInContact, contact);
+            clientInContact.onStatusChange().add(this::handleContactStatusChange);
+        }
+
         updateStatus();
-        contact.onStatusChange().add(this::handleContactStatusChange);
     }
 
     //region : Action.sub-methods
@@ -112,12 +150,14 @@ public class ClientManager {
      * @return the evaluated status according to those of the `contacts`.
      */
     private Status evaluateStatus() {
-        var riskIndicator = 0f;
-        for (var contact : contacts) {
-            riskIndicator += contact.getStatus().getRisk();
+        var totalRiskIndicator = 0f;
+        for (var clientInContact : contacts.keySet()) {
+            var riskIndicator = clientInContact.getStatus().getRisk();
+            var contactValue = contacts.get(clientInContact).getValue();
+            totalRiskIndicator += riskIndicator * contactValue;
         }
 
-        if (riskIndicator < cautionLevel.getTolerance()) {
+        if (totalRiskIndicator < cautionLevel.getTolerance()) {
             return Status.NO_RISK;
         } else {
             return Status.RISKY;

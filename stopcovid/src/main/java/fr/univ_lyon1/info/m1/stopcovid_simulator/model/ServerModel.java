@@ -91,13 +91,15 @@ public class ServerModel {
      *
      * @param connectionId The connection id of the sender client.
      * @param id           The id of the client in contact with the sender client.
+     * @param contactValue The number of times they contacted.
      */
-    public void handleDeclareContact(final int connectionId, final String id) {
+    public void handleDeclareContact(final int connectionId, final String id,
+                                     final int contactValue) {
         var client0 = clients.get(connectionId);
         var client1 = getClient(id);
 
-        client0.addContact(client1.getState());
-        client1.addContact(client0.getState());
+        client0.addContact(client1.getState(), contactValue, true);
+        client1.addContact(client0.getState(), contactValue, false);
     }
     //endregion
 
