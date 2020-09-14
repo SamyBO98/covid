@@ -11,25 +11,21 @@
         <Label text="Stop COVID - Server" BorderPane.alignment="CENTER"/>
     </top>
     <bottom>
-        <Label styleClass="h4" text="Créée par BESSAADI Ilyess &amp; BEN OTHMAN Samy" BorderPane.alignment="CENTER"/>
+        <Label styleClass="h4" text="Created by BESSAADI Ilyess &amp; BEN OTHMAN Samy." BorderPane.alignment="CENTER"/>
     </bottom>
     <center>
         <VBox BorderPane.alignment="CENTER">
-            <children>
-                <HBox>
-                    <children>
-                        <ComboBox fx:id="cautionLevelComboBox" promptText="Select caution level"
-                                  styleClass="split-menu-btn">
-                            <items>
-                                <FXCollections fx:factory="observableArrayList">
-                                </FXCollections>
-                            </items>
-                        </ComboBox>
-                        <Button fx:id="changeCautionLevelButton" mnemonicParsing="false" styleClass="btn-primary"
-                                text="Change caution level"/>
-                    </children>
-                </HBox>
-            </children>
+            <HBox>
+                <ComboBox fx:id="cautionLevelComboBox" promptText="Select caution level"
+                          styleClass="split-menu-btn">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+                <Button fx:id="changeCautionLevelButton" mnemonicParsing="false" styleClass="btn-primary"
+                        text="Change caution level"/>
+            </HBox>
         </VBox>
     </center>
 </BorderPane>

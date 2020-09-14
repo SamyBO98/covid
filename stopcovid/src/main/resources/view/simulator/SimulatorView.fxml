@@ -10,31 +10,25 @@
         <Label styleClass="h1" text="Stop COVID : Simulator" BorderPane.alignment="CENTER"/>
     </top>
     <bottom>
-        <Label styleClass="h4" text="Créée par BESSAADI Ilyess &amp; BEN OTHMAN Samy" BorderPane.alignment="CENTER"/>
+        <Label styleClass="h4" text="Created by BESSAADI Ilyess &amp; BEN OTHMAN Samy." BorderPane.alignment="CENTER"/>
     </bottom>
     <center>
         <VBox BorderPane.alignment="CENTER">
-            <children>
-                <HBox fx:id="serverControlPanelContainer" prefHeight="100.0">
-                    <children>
-                        <Label styleClass="h2" text="Server : "/>
-                        <Button fx:id="serverLauncherButton" mnemonicParsing="false" styleClass="btn-success"
-                                text="Start !"/>
-                    </children>
+            <HBox fx:id="serverControlPanelContainer">
+                <Label styleClass="h2" text="Server : "/>
+                <Button fx:id="serverLauncherButton" mnemonicParsing="false" styleClass="btn-success"
+                        text="Start !"/>
+            </HBox>
+            <VBox>
+                <HBox>
+                    <Label styleClass="h2" text="Client : "/>
+                    <Button fx:id="addClientButton" disable="true" mnemonicParsing="false"
+                            styleClass="btn-primary" text="Add Client"/>
                 </HBox>
-                <VBox prefHeight="550.0">
-                    <children>
-                        <HBox prefHeight="100.0">
-                            <children>
-                                <Label styleClass="h2" text="Client : "/>
-                                <Button fx:id="addClientButton" disable="true" mnemonicParsing="false"
-                                        styleClass="btn-primary" text="Add Client"/>
-                            </children>
-                        </HBox>
-                        <VBox fx:id="clientControlPanelsContainer" prefHeight="400.0"/>
-                    </children>
-                </VBox>
-            </children>
+                <ScrollPane prefHeight="400.0">
+                    <HBox fx:id="clientControlPanelsContainer"/>
+                </ScrollPane>
+            </VBox>
         </VBox>
     </center>
 </BorderPane>
