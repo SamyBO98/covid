@@ -23,9 +23,9 @@ public enum Status {
      * @return the risk indicator represented by a user of `this` status.
      */
     public float getRisk() {
-        final float lowRisk = 0.1f;
-        final float mediumRisk = 0.5f;
-        final float highRisk = 1f;
+        final var lowRisk = 0.1f;
+        final var mediumRisk = 0.5f;
+        final var highRisk = 1f;
 
         switch (this) {
             case NO_RISK:

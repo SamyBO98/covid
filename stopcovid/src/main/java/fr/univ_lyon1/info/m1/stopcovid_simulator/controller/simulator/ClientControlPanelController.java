@@ -25,13 +25,13 @@ public class ClientControlPanelController implements Initializable {
     @FXML
     private Label statusLabel;
     @FXML
-    private ComboBox<SendingStrategy> sendingStrategyComboBox;
-    @FXML
-    private Button sendingStrategyButton;
+    private ComboBox<String> meetComboBox;
     @FXML
     private Button meetButton;
     @FXML
-    private ComboBox<String> meetComboBox;
+    private ComboBox<SendingStrategy> sendingStrategyComboBox;
+    @FXML
+    private Button sendingStrategyButton;
     @FXML
     private Button openClientAppButton;
     @FXML
@@ -55,6 +55,9 @@ public class ClientControlPanelController implements Initializable {
         client.onIdChange().add(this::handleUpdateId);
         client.onStatusChange().add(this::handleUpdateStatus);
 
+        idLabel.setText(String.format("Id : %s", client.getId()));
+        statusLabel.setText(String.format("Status : %s", client.getStatus()));
+
         meetButton.setOnAction(this::handleMeet);
 
         sendingStrategyComboBox.getItems().add(SendingStrategy.ALL);
@@ -64,9 +67,6 @@ public class ClientControlPanelController implements Initializable {
         sendingStrategyButton.setOnAction(this::handleChangeSendingStrategy);
 
         openClientAppButton.setOnAction(this::handleOpenClientApp);
-
-        handleUpdateId(client.getId());
-        handleUpdateStatus(client.getStatus());
     }
     //endregion : Initialization
 

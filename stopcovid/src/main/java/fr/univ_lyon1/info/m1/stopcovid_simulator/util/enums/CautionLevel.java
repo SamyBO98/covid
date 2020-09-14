@@ -23,9 +23,9 @@ public enum CautionLevel {
      * @return the risk tolerance indicator at `this` caution level.
      */
     public float getTolerance() {
-        final float highTolerance = 5f;
-        final float mediumTolerance = 1f;
-        final float lowTolerance = 0.5f;
+        final var highTolerance = 5f;
+        final var mediumTolerance = 1f;
+        final var lowTolerance = 0.5f;
 
         switch (this) {
             case UNWARY:

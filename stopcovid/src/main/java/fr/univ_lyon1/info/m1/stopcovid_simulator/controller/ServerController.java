@@ -49,8 +49,9 @@ public class ServerController implements Initializable {
      * @param event JavaFX event.
      */
     private void handleChangeCautionLevel(final ActionEvent event) {
-        if (cautionLevelComboBox.getValue() != null) {
-            server.setCautionLevel(cautionLevelComboBox.getValue());
+        var cautionLevel = cautionLevelComboBox.getValue();
+        if (cautionLevel != null) {
+            server.setCautionLevel(cautionLevel);
         }
     }
     //endregion : FX handler

@@ -78,7 +78,7 @@ public class ClientModel {
      *
      * @param sendingStrategy The sending strategy to set.
      */
-    public void setSendingStrategy(SendingStrategy sendingStrategy) {
+    public void setSendingStrategy(final SendingStrategy sendingStrategy) {
         this.sendingStrategy = sendingStrategy;
     }
     //endregion : Getters & Setters
@@ -156,7 +156,8 @@ public class ClientModel {
     /**
      * Send a `declare contact message` to server.
      *
-     * @param id The id of the client in contact.
+     * @param id           The id of the client in contact.
+     * @param contactValue The number of times they contacted.
      */
     private void declareContact(final String id, final int contactValue) {
         serverMessaging.handleDeclareContact(connectionId, id, contactValue);
