@@ -24,8 +24,8 @@ public enum Status {
      */
     public float getRisk() {
         final var lowRisk = 0.1f;
-        final var mediumRisk = 0.5f;
-        final var highRisk = 1f;
+        final var mediumRisk = 0.2f;
+        final var highRisk = 0.5f;
 
         switch (this) {
             case NO_RISK:
