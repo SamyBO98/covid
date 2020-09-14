@@ -112,7 +112,7 @@ public class SimulatorController implements Initializable {
         clientsMessaging.add(client);
 
         createClientControlPanel(client);
-        client.onPseudoChange().add(this::handleSomePseudoChange);
+        client.onIdChange().add(this::handleSomeIdChange);
         renewsMeetItems();
 
         client.connect(clientConnectionId, serverMessaging);
@@ -170,23 +170,23 @@ public class SimulatorController implements Initializable {
     //region : Event handler
 
     /**
-     * Handler of `clients pseudo change`.
+     * Handler of `clients id change`.
      * Simple redirection to `renewsMeetItems()`.
      *
      * @param discard Unused parameter.
      */
-    private void handleSomePseudoChange(final String discard) {
+    private void handleSomeIdChange(final String discard) {
         renewsMeetItems();
     }
     //endregion : Event handler
 
     /**
-     * Renews the list of client pseudos that can be met for each `client control panel controller`.
+     * Renews the list of client ids that can be met for each `client control panel controller`.
      */
     private void renewsMeetItems() {
         var meetItems = new ArrayList<String>();
         for (var clientControlPanelController : clientControlPanelControllers) {
-            meetItems.add(clientControlPanelController.getPseudo());
+            meetItems.add(clientControlPanelController.getId());
         }
 
         for (var clientControlPanelController : clientControlPanelControllers) {

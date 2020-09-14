@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 
 public class ClientControlPanelController implements Initializable {
     @FXML
-    private Label pseudoLabel;
+    private Label idLabel;
     @FXML
     private Label statusLabel;
     @FXML
@@ -47,13 +47,13 @@ public class ClientControlPanelController implements Initializable {
 
     @Override
     public void initialize(final URL url, final ResourceBundle resourceBundle) {
-        client.onPseudoChange().add(this::handleUpdatePseudo);
+        client.onIdChange().add(this::handleUpdateId);
         client.onStatusChange().add(this::handleUpdateStatus);
 
         meetButton.setOnAction(this::handleMeet);
         openClientAppButton.setOnAction(this::handleOpenClientApp);
 
-        handleUpdatePseudo(client.getPseudo());
+        handleUpdateId(client.getId());
         handleUpdateStatus(client.getStatus());
     }
     //endregion : Initialization
@@ -61,24 +61,24 @@ public class ClientControlPanelController implements Initializable {
     //region : Getters & Setters
 
     /**
-     * @return the `client pseudo`.
+     * @return the `client id`.
      */
-    public String getPseudo() {
-        return client.getPseudo();
+    public String getId() {
+        return client.getId();
     }
     //endregion : Getters & Setters
 
     //region : Action
 
     /**
-     * Renews the client pseudos that can be met (= `meet item`).
+     * Renews the client ids that can be met (= `meet item`).
      *
      * @param meetItems List of new `meet items`.
      */
     public void renewsMeetItems(final List<String> meetItems) {
         meetComboBox.getItems().clear();
         for (var meetItem : meetItems) {
-            if (!meetItem.equals(getPseudo())) {
+            if (!meetItem.equals(getId())) {
                 meetComboBox.getItems().add(meetItem);
             }
         }
@@ -89,14 +89,14 @@ public class ClientControlPanelController implements Initializable {
 
     /**
      * Handler of `meet button`.
-     * Meet the `client` and the client with the pseudo selected in the `meet combo box`.
+     * Meet the `client` and the client with the id selected in the `meet combo box`.
      *
      * @param event JavaFX event.
      */
     private void handleMeet(final ActionEvent event) {
-        var pseudo = meetComboBox.getValue();
-        if (pseudo != null) {
-            client.meet(pseudo);
+        var id = meetComboBox.getValue();
+        if (id != null) {
+            client.meet(id);
         }
     }
 
@@ -131,13 +131,13 @@ public class ClientControlPanelController implements Initializable {
     //region : Event handler
 
     /**
-     * Handler of `client pseudo change`.
-     * Updates the `pseudo label` with the `pseudo`.
+     * Handler of `client id change`.
+     * Updates the `id label` with the `id`.
      *
-     * @param pseudo The new pseudo of `client`.
+     * @param id The new id of `client`.
      */
-    private void handleUpdatePseudo(final String pseudo) {
-        pseudoLabel.setText(String.format("Pseudo : %s", pseudo));
+    private void handleUpdateId(final String id) {
+        idLabel.setText(String.format("Id : %s", id));
     }
 
     /**

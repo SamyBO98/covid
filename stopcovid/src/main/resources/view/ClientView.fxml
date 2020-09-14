@@ -15,7 +15,7 @@
     <center>
         <VBox BorderPane.alignment="CENTER">
             <children>
-                <Label fx:id="pseudoLabel" styleClass="h2" text="Pseudo :"/>
+                <Label fx:id="idLabel" styleClass="h2" text="Id :"/>
                 <Label fx:id="statusLabel" styleClass="h2" text="Status :"/>
                 <Button fx:id="declareInfectedButton" mnemonicParsing="false" styleClass="btn-danger"
                         text="Declare infected"/>
