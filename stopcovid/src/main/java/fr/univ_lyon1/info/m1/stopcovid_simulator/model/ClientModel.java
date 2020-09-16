@@ -56,6 +56,7 @@ public class ClientModel {
         return state.getId();
     }
 
+
     /**
      * @return the `state status`.
      */

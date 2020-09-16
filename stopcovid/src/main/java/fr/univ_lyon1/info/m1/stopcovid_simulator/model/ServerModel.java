@@ -50,6 +50,14 @@ public class ServerModel {
             client.setCautionLevel(cautionLevel);
         }
     }
+
+    /**
+     * Get 'caution level'.
+     */
+    public CautionLevel getCautionLevel() {
+        return cautionLevel;
+    }
+
     //endregion : Getters & Setters
 
     //region : Messaging handler (#VBMS content)
