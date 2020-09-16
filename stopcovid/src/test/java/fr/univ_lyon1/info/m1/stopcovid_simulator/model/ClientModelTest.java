@@ -18,7 +18,6 @@ class ClientModelTest {
 
     @Test
     void testGetStatus() {
-        // Setup
 
         // Run the test
         final Status result = clientModelUnderTest.getStatus();
@@ -26,5 +25,6 @@ class ClientModelTest {
         // Verify the results
         assertEquals(Status.NO_RISK, result);
     }
+
 
 }
