@@ -5,6 +5,10 @@ public enum Status {
     RISKY,
     INFECTED;
 
+    private static final float LOW_RISK = 0.1f;
+    private static final float MEDIUM_RISK = 0.2f;
+    private static final float HIGH_RISK = 0.5f;
+
     @Override
     public String toString() {
         switch (this) {
@@ -23,17 +27,13 @@ public enum Status {
      * @return the risk indicator represented by a user of `this` status.
      */
     public float getRisk() {
-        final var lowRisk = 0.1f;
-        final var mediumRisk = 0.2f;
-        final var highRisk = 0.5f;
-
         switch (this) {
             case NO_RISK:
-                return lowRisk;
+                return LOW_RISK;
             case RISKY:
-                return mediumRisk;
+                return MEDIUM_RISK;
             case INFECTED:
-                return highRisk;
+                return HIGH_RISK;
             default:
                 throw new IllegalArgumentException();
         }

@@ -5,6 +5,10 @@ public enum SendingStrategy {
     REPEATED,
     FREQUENT;
 
+    private static final int ALL_THRESHOLD = 1;
+    private static final int REPEATED_THRESHOLD = 2;
+    private static final int FREQUENT_THRESHOLD = 5;
+
     @Override
     public String toString() {
         switch (this) {
@@ -23,17 +27,13 @@ public enum SendingStrategy {
      * @return the sending threshold of `this` sending strategy.
      */
     public int getSendingThreshold() {
-        final var allThreshold = 1;
-        final var repeatedThreshold = 2;
-        final var frequentThreshold = 5;
-
         switch (this) {
             case ALL:
-                return allThreshold;
+                return ALL_THRESHOLD;
             case REPEATED:
-                return repeatedThreshold;
+                return REPEATED_THRESHOLD;
             case FREQUENT:
-                return frequentThreshold;
+                return FREQUENT_THRESHOLD;
             default:
                 throw new IllegalArgumentException();
         }

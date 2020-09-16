@@ -64,7 +64,7 @@ public class ServerModel {
         var client = new ClientManager(state, cautionLevel);
         clients.put(connectionId, client);
 
-        client.onStateChange().add(this::handleStateChange);
+        client.onStatusChange().add(newStatus -> handleStatusChange(connectionId, newStatus));
     }
 
     /**
@@ -127,16 +127,14 @@ public class ServerModel {
     //region : Event handler
 
     /**
-     * Handler of `clients state change`.
+     * Handler of `clients status change`.
      * Declare the change of status to the client.
      *
-     * @param id The id of the client who changed.
+     * @param connectionId The connection id of the client who changed.
+     * @param status       The changed status.
      */
-    private void handleStateChange(final String id) {
-        var client = getClient(id);
-        var connectionId = getConnectionId(client);
-
-        switch (client.getState().getStatus()) {
+    private void handleStatusChange(final int connectionId, final Status status) {
+        switch (status) {
             case NO_RISK:
                 declareNoRisk(connectionId);
                 return;
@@ -159,19 +157,6 @@ public class ServerModel {
         for (var client : clients.values()) {
             if (client.getState().getId().equals(id)) {
                 return client;
-            }
-        }
-        throw new IllegalArgumentException();
-    }
-
-    /**
-     * @param client The client with the connection id to search for.
-     * @return the `client connection id`.
-     */
-    private int getConnectionId(final ClientManager client) {
-        for (var connectionId : clients.keySet()) {
-            if (clients.get(connectionId) == client) {
-                return connectionId;
             }
         }
         throw new IllegalArgumentException();
