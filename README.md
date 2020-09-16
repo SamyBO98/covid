@@ -204,9 +204,26 @@ Discussion par messagerie instantanée : [mif01-cm](https://go.rocket.chat/invit
 * Transparents : [10-ethics-slides.pdf](10-ethics-slides.pdf)
   (version imprimable : [10-ethics-handout.pdf](10-ethics-handout.pdf))
 
-## CM 10: Gestion de projet en entreprise (hybride "comodal", des étudiants en présentiel et d'autres en visio)
+## CM 10 (18/9): Gestion de projet en entreprise (hybride "comodal", des étudiants en présentiel et d'autres en visio)
 
 Intervention de Jonathan BENZAQUEN.
+
+Remplissez le sondage TOMUSS pour dire si vous serez présents ou non.
+
+Présentiel en amphi 2 déambu, retransmission en visio via :
+
+```
+Salle personnelle de matthieu moy
+https://univ-lyon1.webex.com/meet/matthieu.moy | 846529139
+
+Rejoindre par système vidéo
+Composez le matthieu.moy@univ-lyon1.webex.com et saisissez votre PIN organisateur .
+Vous pouvez également composer 62.109.219.4 et saisir votre numéro de votre réunion.
+
+Rejoindre par téléphone
++33-1851-48835 France Toll
+Code d'accès : 846 529 139
+```
 
 # How to use this repository
 
