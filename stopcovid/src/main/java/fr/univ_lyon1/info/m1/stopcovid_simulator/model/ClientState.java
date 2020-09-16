@@ -55,6 +55,7 @@ public class ClientState {
         return id;
     }
 
+
     /**
      * @return `this status`.
      */
