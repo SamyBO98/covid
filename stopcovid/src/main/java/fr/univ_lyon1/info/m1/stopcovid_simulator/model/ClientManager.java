@@ -1,6 +1,5 @@
 package fr.univ_lyon1.info.m1.stopcovid_simulator.model;
 
-import com.github.hervian.reflection.Delegate;
 import com.github.hervian.reflection.Event;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.CautionLevel;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.Status;
@@ -32,9 +31,6 @@ public class ClientManager {
     private CautionLevel cautionLevel;
     private final HashMap<ClientState, Contact> contacts;
 
-    private final Delegate.With1ParamAndVoid<String> stateChangeDelegate;
-    private final Event.With1ParamAndVoid<String> stateChangeEvent;
-
     //region : Initialization
 
     /**
@@ -47,9 +43,6 @@ public class ClientManager {
         this.state = new ClientState(state);
         this.cautionLevel = cautionLevel;
         contacts = new HashMap<>();
-
-        stateChangeDelegate = new Delegate.With1ParamAndVoid<>();
-        stateChangeEvent = new Event.With1ParamAndVoid<>(stateChangeDelegate);
     }
     //endregion : Initialization
 
@@ -63,10 +56,10 @@ public class ClientManager {
     }
 
     /**
-     * @return `this state change event`.
+     * @return `this state status change event`.
      */
-    public Event.With1ParamAndVoid<String> onStateChange() {
-        return stateChangeEvent;
+    public Event.With1ParamAndVoid<Status> onStatusChange() {
+        return state.onStatusChange();
     }
 
     /**
@@ -142,7 +135,6 @@ public class ClientManager {
         var newStatus = evaluateStatus();
         if (state.getStatus() != newStatus) {
             state.setStatus(newStatus);
-            stateChangeDelegate.invokeAndAggregateExceptions(state.getId());
         }
     }
 

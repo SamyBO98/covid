@@ -5,6 +5,10 @@ public enum CautionLevel {
     BASIC,
     WARY;
 
+    private static final float HIGH_TOLERANCE = 5f;
+    private static final float MEDIUM_TOLERANCE = 1f;
+    private static final float LOW_TOLERANCE = 0.5f;
+
     @Override
     public String toString() {
         switch (this) {
@@ -23,17 +27,13 @@ public enum CautionLevel {
      * @return the risk tolerance indicator at `this` caution level.
      */
     public float getTolerance() {
-        final var highTolerance = 5f;
-        final var mediumTolerance = 1f;
-        final var lowTolerance = 0.5f;
-
         switch (this) {
             case UNWARY:
-                return highTolerance;
+                return HIGH_TOLERANCE;
             case BASIC:
-                return mediumTolerance;
+                return MEDIUM_TOLERANCE;
             case WARY:
-                return lowTolerance;
+                return LOW_TOLERANCE;
             default:
                 throw new IllegalArgumentException();
         }
