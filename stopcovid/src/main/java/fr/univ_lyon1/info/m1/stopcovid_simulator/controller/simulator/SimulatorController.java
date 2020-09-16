@@ -2,6 +2,7 @@ package fr.univ_lyon1.info.m1.stopcovid_simulator.controller.simulator;
 
 import fr.univ_lyon1.info.m1.stopcovid_simulator.model.ClientModel;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.model.ServerModel;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -171,12 +172,12 @@ public class SimulatorController implements Initializable {
 
     /**
      * Handler of `clients id change`.
-     * Simple redirection to `renewsMeetItems()`.
+     * Simple redirection to `renewsMeetItems()`.f
      *
      * @param discard Unused parameter.
      */
     private void handleSomeIdChange(final String discard) {
-        renewsMeetItems();
+        Platform.runLater(this::renewsMeetItems);
     }
     //endregion : Event handler
 

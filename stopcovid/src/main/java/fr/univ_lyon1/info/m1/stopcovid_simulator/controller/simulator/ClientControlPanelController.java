@@ -4,6 +4,7 @@ import fr.univ_lyon1.info.m1.stopcovid_simulator.controller.ClientController;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.model.ClientModel;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.SendingStrategy;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.Status;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -162,7 +163,7 @@ public class ClientControlPanelController implements Initializable {
      * @param id The new id of `client`.
      */
     private void handleUpdateId(final String id) {
-        idLabel.setText(String.format("Id : %s", id));
+        Platform.runLater(() -> idLabel.setText(String.format("Id : %s", id)));
     }
 
     /**
@@ -172,7 +173,7 @@ public class ClientControlPanelController implements Initializable {
      * @param status The new status of `client`.
      */
     private void handleUpdateStatus(final Status status) {
-        statusLabel.setText(String.format("Status : %s", status));
+        Platform.runLater(() -> statusLabel.setText(String.format("Status : %s", status)));
     }
     //endregion : Event handler
 }

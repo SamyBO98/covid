@@ -28,8 +28,9 @@ public class ClientModel {
     //endregion
 
     private final ClientState state;
-    private final HashMap<String, Integer> tempContacts;
     private SendingStrategy sendingStrategy;
+    private final HashMap<String, Integer> tempContacts;
+    private final Thread idUpdater;
 
     //region : Initialization
 
@@ -40,6 +41,9 @@ public class ClientModel {
         state = new ClientState();
         tempContacts = new HashMap<>();
         sendingStrategy = SendingStrategy.REPEATED;
+
+        idUpdater = new Thread(this::renewIdLoopCor);
+        idUpdater.start();
     }
     //endregion : Initialization
 
@@ -163,4 +167,22 @@ public class ClientModel {
         serverMessaging.handleDeclareContact(connectionId, id, contactValue);
     }
     //endregion : Messaging sender
+
+    //region : Coroutine
+
+    /**
+     * Id renewal coroutine.
+     */
+    private void renewIdLoopCor() {
+        while (true) {
+            try {
+                Thread.sleep(SimulatedTime.UPDATE_ID_DELAY);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                return;
+            }
+            updateId();
+        }
+    }
+    //endregion : Coroutine
 }
