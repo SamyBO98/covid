@@ -79,6 +79,7 @@ public class ClientManager {
         return state;
     }
 
+
     /**
      * @return `this state status change event`.
      */
