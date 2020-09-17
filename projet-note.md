@@ -103,7 +103,7 @@ Votre dépôt sur la Forge devra contenir :
 - un fichier maven (`stopcovid/pom.xml`) pour le build du projet
 - les sources (fichiers Java)
 - les fichiers natifs de votre modélisation UML (indiquez quel outil a été utilisé)
-- le rapport en PDF (6 pages maximum, format libre), dans un fichier qui doit impérativement s'appeler `rapport.pdf` à la racine du dépôt Git.
+- le rapport en PDF (6 pages maximum, format libre. La limitation de pages est indicative, si vous avez vraiment besoin de plus vous pouvez dépasser un peu mais restez raisonnables et concis), dans un fichier qui doit impérativement s'appeler `rapport.pdf` à la racine du dépôt Git.
 
 ## Barème indicatif (le barème sera ramené à 20), à utiliser comme checklist pour vérifier que vous avez tout fait
 
