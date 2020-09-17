@@ -1,18 +1,23 @@
 package fr.univ_lyon1.info.m1.stopcovid_simulator.controller;
 
 import fr.univ_lyon1.info.m1.stopcovid_simulator.model.ClientModel;
+import fr.univ_lyon1.info.m1.stopcovid_simulator.util.Destroyable;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.Status;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ClientController implements Initializable {
+public class ClientController implements Initializable, Destroyable {
+    @FXML
+    private Node root;
     @FXML
     private Label idLabel;
     @FXML
@@ -44,6 +49,18 @@ public class ClientController implements Initializable {
         declareInfectedButton.setOnAction(this::handleDeclareInfected);
     }
     //endregion : Initialization
+
+    //region : Ending
+
+    /**
+     * Destructor.
+     */
+    @Override
+    public void destroy() {
+        var stage = (Stage) root.getScene().getWindow();
+        stage.close();
+    }
+    //endregion : Ending
 
     //region : FX handler
 

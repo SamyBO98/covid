@@ -16,14 +16,13 @@
         <VBox BorderPane.alignment="CENTER">
             <HBox fx:id="serverControlPanelContainer">
                 <Label styleClass="h2" text="Server : "/>
-                <Button fx:id="serverLauncherButton" mnemonicParsing="false" styleClass="btn-success"
-                        text="Start !"/>
+                <Button fx:id="serverLauncherButton" mnemonicParsing="false" styleClass="btn-success" text="Start !"/>
             </HBox>
             <VBox>
                 <HBox>
                     <Label styleClass="h2" text="Client : "/>
-                    <Button fx:id="addClientButton" disable="true" mnemonicParsing="false"
-                            styleClass="btn-primary" text="Add Client"/>
+                    <Button fx:id="addClientButton" disable="true" mnemonicParsing="false" styleClass="btn-primary"
+                            text="Add Client"/>
                 </HBox>
                 <ScrollPane prefHeight="400.0">
                     <HBox fx:id="clientControlPanelsContainer"/>

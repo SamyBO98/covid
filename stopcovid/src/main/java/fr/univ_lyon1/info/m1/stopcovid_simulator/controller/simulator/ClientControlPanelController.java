@@ -2,13 +2,16 @@ package fr.univ_lyon1.info.m1.stopcovid_simulator.controller.simulator;
 
 import fr.univ_lyon1.info.m1.stopcovid_simulator.controller.ClientController;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.model.ClientModel;
+import fr.univ_lyon1.info.m1.stopcovid_simulator.util.Destroyable;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.SendingStrategy;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.Status;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
@@ -20,7 +23,9 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ClientControlPanelController implements Initializable {
+public class ClientControlPanelController implements Initializable, Destroyable {
+    @FXML
+    private Node root;
     @FXML
     private Label idLabel;
     @FXML
@@ -39,6 +44,7 @@ public class ClientControlPanelController implements Initializable {
     private Button removeClientButton;
 
     private final ClientModel client;
+    private ClientController clientController;
 
     //region : Initialization
 
@@ -71,13 +77,43 @@ public class ClientControlPanelController implements Initializable {
     }
     //endregion : Initialization
 
+    //region : Ending
+
+    /**
+     * Destructor.
+     */
+    @Override
+    public void destroy() {
+        client.destroy();
+        if (clientController != null) {
+            clientController.destroy();
+        }
+    }
+    //endregion : Ending
+
     //region : Getters & Setters
+
+    /**
+     * @return the root node.
+     */
+    public Node getRoot() {
+        return root;
+    }
 
     /**
      * @return the `client id`.
      */
     public String getId() {
         return client.getId();
+    }
+
+    /**
+     * Set `remove client button action` with `handler`.
+     *
+     * @param handler The handler to set.
+     */
+    public void setOnRemoveClientAction(final EventHandler<ActionEvent> handler) {
+        removeClientButton.setOnAction(handler);
     }
     //endregion : Getters & Setters
 
@@ -134,6 +170,7 @@ public class ClientControlPanelController implements Initializable {
      */
     private void handleOpenClientApp(final ActionEvent event) {
         var clientController = new ClientController(client);
+        this.clientController = clientController;
 
         var clientFXMLLoader = new FXMLLoader(getClass().getResource("/view/ClientView.fxml"));
         clientFXMLLoader.setController(clientController);
@@ -144,7 +181,10 @@ public class ClientControlPanelController implements Initializable {
             var clientStage = new Stage();
             clientStage.setTitle("Stop COVID - Client");
             clientStage.setScene(clientScene);
-            clientStage.setOnHidden(e -> openClientAppButton.setDisable(false));
+            clientStage.setOnHidden(e -> {
+                openClientAppButton.setDisable(false);
+                this.clientController = null;
+            });
             clientStage.show();
 
             openClientAppButton.setDisable(true);
