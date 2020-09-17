@@ -1,5 +1,15 @@
 Ce fichier contiendra les nouvelles du cours. Un mail sera envoyé quand le fichier est mis à jour.
 
+# 17/09/2020 : Dernière ligne droite
+
+Le stage intensif se termine demain. Quelques informations et conseils :
+
+* Le dernier CM aura lieu demain vendredi, 8h-9h30, amphi 2 Déambu ou via [WebEx](https://univ-lyon1.webex.com/meet/matthieu.moy). Vous avez des salles machines réservées sur le créneau suivant, mais pas d'encadrant.
+
+* Le projet est à rendre pour ce dimanche soir. Lire et relire les consignes sur [projet-note.md](projet-note.md). Attention, posez bien vos questions sur le chat-info avant le week-end (il n'est pas garanti qu'il y ait des enseignants sur le chat pendant le week-end).
+
+* Pour rappel, l'examen aura lieu le 14/10/2020
+
 # 11/09/2020 (ter) : Vidéo du CM sur le test
 
 La vidéo du CM sur le test est disponible, mais en mode « unlisted » sur Youtube. Le lien est disponible dans le canal mif01-cm du chat-info. Merci à Florian Garcia qui a retouché la bande son pour moins vous casser les oreilles avec les bip-bip des retardataires.
