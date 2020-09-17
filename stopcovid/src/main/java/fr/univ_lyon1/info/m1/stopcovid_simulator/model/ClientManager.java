@@ -2,13 +2,14 @@ package fr.univ_lyon1.info.m1.stopcovid_simulator.model;
 
 import com.github.hervian.reflection.Event;
 import com.github.hervian.reflection.Fun;
+import fr.univ_lyon1.info.m1.stopcovid_simulator.util.Destroyable;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.CautionLevel;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.Status;
 
 import java.util.HashMap;
 
-public class ClientManager {
-    private class Contact {
+public class ClientManager implements Destroyable {
+    private static class Contact implements Destroyable {
         private int contactSent;
         private int contactReceived;
         private Runnable contactLifeTimerHandler;
@@ -29,6 +30,16 @@ public class ClientManager {
         }
 
         /**
+         * Destructor.
+         */
+        @Override
+        public void destroy() {
+            if (contactLifeTimer != null) {
+                contactLifeTimer.interrupt();
+            }
+        }
+
+        /**
          * @return the total contacts value.
          */
         public int getValue() {
@@ -42,7 +53,9 @@ public class ClientManager {
         }
 
         public void reload() {
-            contactLifeTimer.interrupt();
+            if (contactLifeTimer != null) {
+                contactLifeTimer.interrupt();
+            }
             contactLifeTimer = new Thread(contactLifeTimerHandler);
             contactLifeTimer.start();
         }
@@ -69,6 +82,26 @@ public class ClientManager {
         state.onStatusChange().add(this::handleStatusChange);
     }
     //endregion : Initialization
+
+    //region : Ending
+
+    /**
+     * Destructor.
+     */
+    @Override
+    public void destroy() {
+        if (infectionLifeTimer != null) {
+            infectionLifeTimer.interrupt();
+        }
+        for (var contactPair : contacts.entrySet()) {
+            var clientInContact = contactPair.getKey();
+            var contact = contactPair.getValue();
+
+            contact.destroy();
+            clientInContact.onStatusChange().remove(contact.statusChangeHandler);
+        }
+    }
+    //endregion : Ending
 
     //region : Getters & Setters
 
@@ -136,7 +169,7 @@ public class ClientManager {
             }
             contact.reload();
         } else {
-            var contact = new Contact(this::handleContactStatusChange);
+            var contact = new Contact(e -> updateStatus());
             if (isSent) {
                 contact.contactSent = contactValue;
             } else {
@@ -190,20 +223,10 @@ public class ClientManager {
     //region : Event handler
 
     /**
-     * Handler of `state status change` of a client in `contacts`.
-     * Simple redirection to `updateStatus()`.
-     *
-     * @param discard unused parameter.
-     */
-    private void handleContactStatusChange(final Status discard) {
-        updateStatus();
-    }
-
-    /**
      * Handler of `state status change`.
      * Starts the infection lifetime coroutine (in case of infection).
      *
-     * @param status
+     * @param status The changed status.
      */
     private void handleStatusChange(final Status status) {
         if (status == Status.INFECTED) {
@@ -245,7 +268,6 @@ public class ClientManager {
 
         clientInContact.onStatusChange().remove(contact.statusChangeHandler);
         contacts.remove(clientInContact, contact);
-
         updateStatus();
     }
     //endregion : Coroutine

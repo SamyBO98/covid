@@ -2,6 +2,7 @@ package fr.univ_lyon1.info.m1.stopcovid_simulator.controller.simulator;
 
 import fr.univ_lyon1.info.m1.stopcovid_simulator.model.ClientModel;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.model.ServerModel;
+import fr.univ_lyon1.info.m1.stopcovid_simulator.util.Destroyable;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,11 +16,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class SimulatorController implements Initializable {
+public class SimulatorController implements Initializable, Destroyable {
     //region : Very bad messaging simulator -> #VBMS
     //To replace by a messaging system.
     private ServerModel serverMessaging;
-    private final ArrayList<ClientModel> clientsMessaging;
 
     private int incrementalId;
     //endregion : Very bad messaging simulator
@@ -42,7 +42,6 @@ public class SimulatorController implements Initializable {
      * Constructor.
      */
     public SimulatorController() { //#VBMS content
-        clientsMessaging = new ArrayList<>();
         clientControlPanelControllers = new ArrayList<>();
 
         incrementalId = 0;
@@ -78,10 +77,21 @@ public class SimulatorController implements Initializable {
 
         serverLauncherButton.setText("Stop !");
 
-        serverLauncherButton.setDisable(true);
+        serverLauncherButton.setOnAction(this::handleStopServer);
     }
     //endregion : Initialization.sub-methods
     //endregion : Initialization
+
+    //region : Ending
+
+    /**
+     * Destructor.
+     */
+    @Override
+    public void destroy() {
+        stopServer();
+    }
+    //endregion : Ending
 
     //region : FX handler
 
@@ -102,6 +112,32 @@ public class SimulatorController implements Initializable {
     }
 
     /**
+     * Handler of `server launcher button`.
+     * Stop `server` and remove connected clients.
+     *
+     * @param event JavaFX event.
+     */
+    private void handleStopServer(final ActionEvent event) { //#VBMS content
+        stopServer();
+        setStartServerButton();
+        addClientButton.setDisable(true);
+    }
+
+    /**
+     * Stop `server` and remove connected clients.
+     */
+    private void stopServer() {
+        for (var clientControlPanelController : clientControlPanelControllers) {
+            removeClient(clientControlPanelController);
+        }
+        clientControlPanelControllers.clear();
+
+        serverControlPanelContainer.getChildren().remove(serverControlPanelController.getRoot());
+
+        serverMessaging = null;
+    }
+
+    /**
      * Handler of `add client button`.
      * Add client.
      *
@@ -110,10 +146,9 @@ public class SimulatorController implements Initializable {
     private void handleAddClient(final ActionEvent event) { //#VBMS content
         var clientConnectionId = ++incrementalId;
         var client = new ClientModel();
-        clientsMessaging.add(client);
 
         createClientControlPanel(client);
-        client.onIdChange().add(this::handleSomeIdChange);
+        client.onIdChange().add(e -> Platform.runLater(this::renewsMeetItems));
         renewsMeetItems();
 
         client.connect(clientConnectionId, serverMessaging);
@@ -163,23 +198,27 @@ public class SimulatorController implements Initializable {
             e.printStackTrace();
         }
 
+        clientControlPanelController.setOnRemoveClientAction(e -> {
+            removeClient(clientControlPanelController);
+            clientControlPanelControllers.remove(clientControlPanelController);
+        });
         clientControlPanelControllers.add(clientControlPanelController);
+    }
+
+    /**
+     * Remove client.
+     *
+     * @param clientControlPanelController The `client control panel controller`
+     *                                     of the client to remove.
+     */
+    private void removeClient(final ClientControlPanelController clientControlPanelController) {
+        clientControlPanelsContainer.getChildren().remove(
+                clientControlPanelController.getRoot()
+        );
+        clientControlPanelController.destroy();
     }
     //endregion : FX handler.sub-methods
     //endregion : FX handler
-
-    //region : Event handler
-
-    /**
-     * Handler of `clients id change`.
-     * Simple redirection to `renewsMeetItems()`.f
-     *
-     * @param discard Unused parameter.
-     */
-    private void handleSomeIdChange(final String discard) {
-        Platform.runLater(this::renewsMeetItems);
-    }
-    //endregion : Event handler
 
     /**
      * Renews the list of client ids that can be met for each `client control panel controller`.

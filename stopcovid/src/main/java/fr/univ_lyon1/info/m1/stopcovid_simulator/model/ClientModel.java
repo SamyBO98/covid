@@ -1,13 +1,14 @@
 package fr.univ_lyon1.info.m1.stopcovid_simulator.model;
 
 import com.github.hervian.reflection.Event;
+import fr.univ_lyon1.info.m1.stopcovid_simulator.util.Destroyable;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.SendingStrategy;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.Status;
 
 import java.util.HashMap;
 import java.util.UUID;
 
-public class ClientModel {
+public class ClientModel implements Destroyable {
     //region : Very bad messaging simulator -> #VBMS
     //To replace by a messaging system.
     private int connectionId;
@@ -24,6 +25,14 @@ public class ClientModel {
         this.serverMessaging = serverMessaging;
 
         handleConnect();
+    }
+
+    /**
+     * Disconnect to the server.
+     */
+    public void disconnect() {
+        serverMessaging.handleDisconnect(connectionId);
+        serverMessaging = null;
     }
     //endregion
 
@@ -46,6 +55,18 @@ public class ClientModel {
         idUpdater.start();
     }
     //endregion : Initialization
+
+    //region : Ending
+
+    /**
+     * Destructor.
+     */
+    @Override
+    public void destroy() {
+        disconnect();
+        idUpdater.interrupt();
+    }
+    //endregion : Ending
 
     //region : Getters & Setters
 
@@ -139,6 +160,9 @@ public class ClientModel {
      * Send a `register state message` to server.
      */
     private void registerState() {
+        if (serverMessaging == null) {
+            return;
+        }
         serverMessaging.handleRegisterState(connectionId, state);
     }
 
@@ -147,6 +171,9 @@ public class ClientModel {
      */
     private void updateId() {
         state.setId(UUID.randomUUID().toString());
+        if (serverMessaging == null) {
+            return;
+        }
         serverMessaging.handleUpdateId(connectionId, state.getId());
     }
 
@@ -155,6 +182,9 @@ public class ClientModel {
      */
     public void declareInfected() {
         state.setStatus(Status.INFECTED);
+        if (serverMessaging == null) {
+            return;
+        }
         serverMessaging.handleDeclareInfected(connectionId);
     }
 
@@ -165,6 +195,9 @@ public class ClientModel {
      * @param contactValue The number of times they contacted.
      */
     private void declareContact(final String id, final int contactValue) {
+        if (serverMessaging == null) {
+            return;
+        }
         serverMessaging.handleDeclareContact(connectionId, id, contactValue);
     }
     //endregion : Messaging sender

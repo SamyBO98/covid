@@ -63,6 +63,18 @@ public class ServerModel {
     //region : Messaging handler (#VBMS content)
 
     /**
+     * Handler of client disconnection.
+     *
+     * @param connectionId The connection id of the sender client.
+     */
+    public void handleDisconnect(final int connectionId) {
+        var client = clients.get(connectionId);
+        client.destroy();
+        clients.remove(connectionId);
+        clientsMessaging.remove(connectionId);
+    }
+
+    /**
      * Handler of `register state message`.
      *
      * @param connectionId The connection id of the sender client.

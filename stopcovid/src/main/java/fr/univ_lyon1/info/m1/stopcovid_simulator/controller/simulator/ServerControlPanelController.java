@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -36,6 +37,16 @@ public class ServerControlPanelController implements Initializable {
         openServerAppButton.setOnAction(this::handleOpenServerApp);
     }
     //endregion : Initialization
+
+    //region : Getters & Setters
+
+    /**
+     * @return the root node.
+     */
+    public Node getRoot() {
+        return openServerAppButton;
+    }
+    //endregion : Getters & Setters
 
     //region : FX handler
 

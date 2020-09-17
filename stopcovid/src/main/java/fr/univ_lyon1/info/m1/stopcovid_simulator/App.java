@@ -12,7 +12,7 @@ public class App extends Application {
     @Override
     public void start(final Stage mainStage) throws Exception {
         mainStage.setTitle("Stop COVID : Simulator");
-        mainStage.setScene(createMainScene());
+        setMainScene(mainStage);
         mainStage.show();
     }
 
@@ -26,7 +26,7 @@ public class App extends Application {
         launch(args);
     }
 
-    private Scene createMainScene() throws IOException {
+    private void setMainScene(final Stage mainStage) throws IOException {
         var mainController = new SimulatorController();
 
         var mainFXMLLoader = new FXMLLoader(
@@ -34,6 +34,8 @@ public class App extends Application {
         );
         mainFXMLLoader.setController(mainController);
 
-        return new Scene(mainFXMLLoader.load());
+        var mainScene = new Scene(mainFXMLLoader.load());
+        mainStage.setScene(mainScene);
+        mainStage.setOnHidden(e -> mainController.destroy());
     }
 }
