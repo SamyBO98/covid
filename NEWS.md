@@ -1,5 +1,11 @@
 Ce fichier contiendra les nouvelles du cours. Un mail sera envoyé quand le fichier est mis à jour.
 
+# 17/09/2020 : Précisions sur les consignes
+
+* Le nombre de pages maximum du rapport (6 pages) est à voir comme une indication. Bien sûr, si vous avez trop de choses intéressantes à dire vous pouvez déborder un peu (et le lecteur préférera 7 pages correctement présentées à 6 pages en police taille 4pt).
+
+* Si vous manquez d'inspiration pour mettre en œuvre des design-patterns, vous pouvez vous autoriser à ajouter des fonctionnalités qui ne sont que des prétextes pour utiliser un design-pattern. C'est bien sûr l'inverse de ce qu'on ferait dans la vraie vie avec un vrai client (à qui on ne proposera pas une fonctionnalité « parce que c'est fun à coder et que ça permet de faire un visiteur » !), mais profitons du fait que le vrai client n'existe pas pour donner un peu de liberté à notre imagination !
+
 # 17/09/2020 : Dernière ligne droite
 
 Le stage intensif se termine demain. Quelques informations et conseils :

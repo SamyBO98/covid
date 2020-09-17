@@ -102,7 +102,7 @@ Allez jeter un œil au [TP "Test"](../TP4-tests/README.md) (en particulier la se
 
 ## Partie 2 : Extension
 
-Dans toute cette partie, l'ajout de fonctionnalité est un prétexte pour se servir de design patterns.
+Dans toute cette partie, l'ajout de fonctionnalité est un prétexte pour se servir de design patterns. Dans la vraie vie, bien sûr, c'est au client ou à l'expert métier de décider des fonctionnalités pertinentes, mais exceptionnellement dans ce projet un peu artificiel on peut s'autoriser à choisir une fonctionnalité parce qu'elle sera intéressante à implémenter.
 Ajoutez chaque fonctionnalité en appliquant les principes et patterns vus en cours, et justifiez-la dans le rapport.
 
 ### N'envoyer que les contacts rencontrés plusieurs fois
