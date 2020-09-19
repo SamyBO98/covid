@@ -1,10 +1,10 @@
 package fr.univ_lyon1.info.m1.stopcovid_simulator.model;
 
-import com.github.hervian.reflection.Event;
-import com.github.hervian.reflection.Fun;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.Destroyable;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.CautionLevel;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.Status;
+import fr.univ_lyon1.info.m1.stopcovid_simulator.util.events.Event;
+import fr.univ_lyon1.info.m1.stopcovid_simulator.util.events.Handler;
 
 import java.util.HashMap;
 
@@ -15,14 +15,14 @@ public class ClientManager implements Destroyable {
         private Runnable contactLifeTimerHandler;
         private Thread contactLifeTimer;
 
-        private final Fun.With1ParamAndVoid<Status> statusChangeHandler;
+        private final Handler.With1Params<Status> statusChangeHandler;
 
         /**
          * Constructor.
          *
          * @param statusChangeHandler The status change handler of the client in contact.
          */
-        Contact(final Fun.With1ParamAndVoid<Status> statusChangeHandler) {
+        Contact(final Handler.With1Params<Status> statusChangeHandler) {
             contactSent = 0;
             contactReceived = 0;
 
@@ -116,7 +116,7 @@ public class ClientManager implements Destroyable {
     /**
      * @return `this state status change event`.
      */
-    public Event.With1ParamAndVoid<Status> onStatusChange() {
+    public Event.With1Params<Status> onStatusChange() {
         return state.onStatusChange();
     }
 
@@ -169,7 +169,7 @@ public class ClientManager implements Destroyable {
             }
             contact.reload();
         } else {
-            var contact = new Contact(e -> updateStatus());
+            var contact = new Contact(discard -> updateStatus());
             if (isSent) {
                 contact.contactSent = contactValue;
             } else {
