@@ -1,6 +1,5 @@
 package fr.univ_lyon1.info.m1.stopcovid_simulator.model;
 
-import com.github.hervian.reflection.Event;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.Status;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
