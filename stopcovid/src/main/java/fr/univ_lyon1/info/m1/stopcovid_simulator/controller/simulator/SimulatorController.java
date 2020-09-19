@@ -148,7 +148,7 @@ public class SimulatorController implements Initializable, Destroyable {
         var client = new ClientModel();
 
         createClientControlPanel(client);
-        client.onIdChange().add(discard -> Platform.runLater(this::renewsMeetItems));
+        client.onIdChange().add(this::handleSomeIdChange);
         renewsMeetItems();
 
         client.connect(clientConnectionId, serverMessaging);
@@ -219,6 +219,19 @@ public class SimulatorController implements Initializable, Destroyable {
     }
     //endregion : FX handler.sub-methods
     //endregion : FX handler
+
+    //region : Event handler
+
+    /**
+     * Handle of clients id change.
+     * Redirection to renews meet items method in the FX Thread.
+     *
+     * @param discard Discarded paramater.
+     */
+    private void handleSomeIdChange(final String discard) {
+        Platform.runLater(this::renewsMeetItems);
+    }
+    //endregion : Event handler
 
     /**
      * Renews the list of client ids that can be met for each `client control panel controller`.

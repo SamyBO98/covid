@@ -4,7 +4,6 @@ import fr.univ_lyon1.info.m1.stopcovid_simulator.util.Destroyable;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.CautionLevel;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.Status;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.events.Event;
-import fr.univ_lyon1.info.m1.stopcovid_simulator.util.events.Handler;
 
 import java.util.HashMap;
 
@@ -15,18 +14,12 @@ public class ClientManager implements Destroyable {
         private Runnable contactLifeTimerHandler;
         private Thread contactLifeTimer;
 
-        private final Handler.With1Params<Status> statusChangeHandler;
-
         /**
          * Constructor.
-         *
-         * @param statusChangeHandler The status change handler of the client in contact.
          */
-        Contact(final Handler.With1Params<Status> statusChangeHandler) {
+        Contact() {
             contactSent = 0;
             contactReceived = 0;
-
-            this.statusChangeHandler = statusChangeHandler;
         }
 
         /**
@@ -47,6 +40,9 @@ public class ClientManager implements Destroyable {
         }
 
         public void load(final Runnable contactLifeTimerHandler) {
+            if (contactLifeTimer != null) {
+                contactLifeTimer.interrupt();
+            }
             this.contactLifeTimerHandler = contactLifeTimerHandler;
             contactLifeTimer = new Thread(contactLifeTimerHandler);
             contactLifeTimer.start();
@@ -98,8 +94,9 @@ public class ClientManager implements Destroyable {
             var contact = contactPair.getValue();
 
             contact.destroy();
-            clientInContact.onStatusChange().remove(contact.statusChangeHandler);
+            clientInContact.onStatusChange().remove(this::handleContactStatusChange);
         }
+        state.onStatusChange().remove(this::handleStatusChange);
     }
     //endregion : Ending
 
@@ -169,13 +166,13 @@ public class ClientManager implements Destroyable {
             }
             contact.reload();
         } else {
-            var contact = new Contact(discard -> updateStatus());
+            var contact = new Contact();
             if (isSent) {
                 contact.contactSent = contactValue;
             } else {
                 contact.contactReceived = contactValue;
             }
-            clientInContact.onStatusChange().add(contact.statusChangeHandler);
+            clientInContact.onStatusChange().add(this::handleContactStatusChange);
             contacts.put(clientInContact, contact);
             contact.load(() -> finishContactLife(clientInContact, contact));
         }
@@ -234,6 +231,16 @@ public class ClientManager implements Destroyable {
             infectionLifeTimer.start();
         }
     }
+
+    /**
+     * Handler of `contacts status change`.
+     * Simple redirection to update status method.
+     *
+     * @param discard Discarded parameter.
+     */
+    private void handleContactStatusChange(final Status discard) {
+        updateStatus();
+    }
     //endregion : Event handler
 
     //region : Coroutine
@@ -266,7 +273,7 @@ public class ClientManager implements Destroyable {
             return;
         }
 
-        clientInContact.onStatusChange().remove(contact.statusChangeHandler);
+        clientInContact.onStatusChange().remove(this::handleContactStatusChange);
         contacts.remove(clientInContact, contact);
         updateStatus();
     }

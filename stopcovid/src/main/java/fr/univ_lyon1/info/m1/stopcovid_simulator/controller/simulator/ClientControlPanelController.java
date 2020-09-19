@@ -84,6 +84,9 @@ public class ClientControlPanelController implements Initializable, Destroyable 
      */
     @Override
     public void destroy() {
+        client.onIdChange().remove(this::handleUpdateId);
+        client.onStatusChange().remove(this::handleUpdateStatus);
+
         client.destroy();
         if (clientController != null) {
             clientController.destroy();
@@ -182,6 +185,7 @@ public class ClientControlPanelController implements Initializable, Destroyable 
             clientStage.setTitle("Stop COVID - Client");
             clientStage.setScene(clientScene);
             clientStage.setOnHidden(e -> {
+                clientController.destroy();
                 openClientAppButton.setDisable(false);
                 this.clientController = null;
             });

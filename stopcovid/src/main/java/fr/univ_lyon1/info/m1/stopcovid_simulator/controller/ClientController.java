@@ -57,6 +57,9 @@ public class ClientController implements Initializable, Destroyable {
      */
     @Override
     public void destroy() {
+        client.onIdChange().remove(this::handleUpdateId);
+        client.onStatusChange().remove(this::handleUpdateStatus);
+
         var stage = (Stage) root.getScene().getWindow();
         stage.close();
     }
