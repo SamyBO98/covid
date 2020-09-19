@@ -3,7 +3,7 @@ package fr.univ_lyon1.info.m1.stopcovid_simulator.controller.simulator;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.controller.ClientController;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.model.ClientModel;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.Destroyable;
-import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.SendingStrategy;
+import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.SendingStrategyName;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.Status;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -35,7 +35,7 @@ public class ClientControlPanelController implements Initializable, Destroyable 
     @FXML
     private Button meetButton;
     @FXML
-    private ComboBox<SendingStrategy> sendingStrategyComboBox;
+    private ComboBox<SendingStrategyName> sendingStrategyComboBox;
     @FXML
     private Button sendingStrategyButton;
     @FXML
@@ -67,9 +67,9 @@ public class ClientControlPanelController implements Initializable, Destroyable 
 
         meetButton.setOnAction(this::handleMeet);
 
-        sendingStrategyComboBox.getItems().add(SendingStrategy.ALL);
-        sendingStrategyComboBox.getItems().add(SendingStrategy.REPEATED);
-        sendingStrategyComboBox.getItems().add(SendingStrategy.FREQUENT);
+        sendingStrategyComboBox.getItems().add(SendingStrategyName.ALL);
+        sendingStrategyComboBox.getItems().add(SendingStrategyName.REPEATED);
+        sendingStrategyComboBox.getItems().add(SendingStrategyName.FREQUENT);
 
         sendingStrategyButton.setOnAction(this::handleChangeSendingStrategy);
 

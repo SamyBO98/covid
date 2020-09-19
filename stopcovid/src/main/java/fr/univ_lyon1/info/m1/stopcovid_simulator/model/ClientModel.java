@@ -1,7 +1,7 @@
 package fr.univ_lyon1.info.m1.stopcovid_simulator.model;
 
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.Destroyable;
-import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.SendingStrategy;
+import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.SendingStrategyName;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.Status;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.events.Event;
 
@@ -70,7 +70,7 @@ public class ClientModel implements Destroyable {
     public ClientModel() {
         state = new ClientState();
         contacts = new HashMap<>();
-        sendingStrategy = SendingStrategy.REPEATED;
+        sendingStrategy = new SendingStrategy.SendRepeated();
 
         idUpdater = new Thread(this::renewIdLoopCor);
         idUpdater.start();
@@ -126,10 +126,22 @@ public class ClientModel implements Destroyable {
     /**
      * Set `this sending strategy` with `sending strategy`.
      *
-     * @param sendingStrategy The sending strategy to set.
+     * @param sendingStrategyName The sending strategy to set.
      */
-    public void setSendingStrategy(final SendingStrategy sendingStrategy) {
-        this.sendingStrategy = sendingStrategy;
+    public void setSendingStrategy(final SendingStrategyName sendingStrategyName) {
+        switch (sendingStrategyName) {
+            case ALL:
+                sendingStrategy = new SendingStrategy.SendAll();
+                break;
+            case REPEATED:
+                sendingStrategy = new SendingStrategy.SendRepeated();
+                break;
+            case FREQUENT:
+                sendingStrategy = new SendingStrategy.SendFrequent();
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
     }
     //endregion : Getters & Setters
 
@@ -144,11 +156,13 @@ public class ClientModel implements Destroyable {
         if (contacts.containsKey(id)) {
             contacts.get(id).addContact();
         } else {
-            contacts.put(id, new ContactToSend(() -> finishContactLife(id)));
+            var contact = new ContactToSend(() -> finishContactLife(id));
+            contact.addContact();
+            contacts.put(id, contact);
         }
 
         var contact = contacts.get(id);
-        if (contact.getValue() >= sendingStrategy.getSendingThreshold()) {
+        if (sendingStrategy.mustSendContact(contact)) {
             declareContact(id, contact.consumeNotSentValue());
         }
     }
