@@ -36,9 +36,30 @@ public class ClientModel implements Destroyable {
     }
     //endregion
 
+    private class ContactToSend extends Contact {
+        private int notSentValue;
+
+        protected ContactToSend(final Runnable contactLifeTimerHandler) {
+            super(contactLifeTimerHandler);
+            notSentValue = 0;
+        }
+
+        @Override
+        public void addContact(final int value) {
+            notSentValue += value;
+            super.addContact(value);
+        }
+
+        public int consumeNotSentValue() {
+            var tempValue = notSentValue;
+            notSentValue = 0;
+            return tempValue;
+        }
+    }
+
     private final ClientState state;
     private SendingStrategy sendingStrategy;
-    private final HashMap<String, Integer> tempContacts;
+    private final HashMap<String, ContactToSend> contacts;
     private final Thread idUpdater;
 
     //region : Initialization
@@ -48,7 +69,7 @@ public class ClientModel implements Destroyable {
      */
     public ClientModel() {
         state = new ClientState();
-        tempContacts = new HashMap<>();
+        contacts = new HashMap<>();
         sendingStrategy = SendingStrategy.REPEATED;
 
         idUpdater = new Thread(this::renewIdLoopCor);
@@ -65,6 +86,9 @@ public class ClientModel implements Destroyable {
     public void destroy() {
         disconnect();
         idUpdater.interrupt();
+        for (var contact : contacts.values()) {
+            contact.destroy();
+        }
     }
     //endregion : Ending
 
@@ -117,15 +141,15 @@ public class ClientModel implements Destroyable {
      * @param id The id of the client to met.
      */
     public void meet(final String id) {
-        if (tempContacts.containsKey(id)) {
-            tempContacts.replace(id, tempContacts.get(id) + 1);
+        if (contacts.containsKey(id)) {
+            contacts.get(id).addContact();
         } else {
-            tempContacts.put(id, 1);
+            contacts.put(id, new ContactToSend(() -> finishContactLife(id)));
         }
 
-        var contactValue = tempContacts.get(id);
-        if (contactValue >= sendingStrategy.getSendingThreshold()) {
-            declareContact(id, contactValue);
+        var contact = contacts.get(id);
+        if (contact.getValue() >= sendingStrategy.getSendingThreshold()) {
+            declareContact(id, contact.consumeNotSentValue());
         }
     }
     //endregion : Action
@@ -217,6 +241,23 @@ public class ClientModel implements Destroyable {
             }
             updateId();
         }
+    }
+
+    /**
+     * Contact lifetime coroutine.
+     *
+     * @param clientInContactId The id of client in contact to remove.
+     */
+    private void finishContactLife(final String clientInContactId) {
+        try {
+            Thread.sleep(SimulatedTime.FORTNIGHTLY);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            return;
+        }
+
+        contacts.get(clientInContactId).destroy();
+        contacts.remove(clientInContactId);
     }
     //endregion : Coroutine
 }

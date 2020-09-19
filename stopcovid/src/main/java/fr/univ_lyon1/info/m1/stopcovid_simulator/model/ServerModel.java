@@ -118,8 +118,8 @@ public class ServerModel {
         var client0 = clients.get(connectionId);
         var client1 = getClient(id);
 
-        client0.addContact(client1.getState(), contactValue, true);
-        client1.addContact(client0.getState(), contactValue, false);
+        client0.addContact(client1.getState(), contactValue);
+        client1.addContact(client0.getState(), contactValue);
     }
     //endregion
 

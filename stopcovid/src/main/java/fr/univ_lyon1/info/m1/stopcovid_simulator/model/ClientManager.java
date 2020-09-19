@@ -8,55 +8,6 @@ import fr.univ_lyon1.info.m1.stopcovid_simulator.util.events.Event;
 import java.util.HashMap;
 
 public class ClientManager implements Destroyable {
-    private static class Contact implements Destroyable {
-        private int contactSent;
-        private int contactReceived;
-        private Runnable contactLifeTimerHandler;
-        private Thread contactLifeTimer;
-
-        /**
-         * Constructor.
-         */
-        Contact() {
-            contactSent = 0;
-            contactReceived = 0;
-        }
-
-        /**
-         * Destructor.
-         */
-        @Override
-        public void destroy() {
-            if (contactLifeTimer != null) {
-                contactLifeTimer.interrupt();
-            }
-        }
-
-        /**
-         * @return the total contacts value.
-         */
-        public int getValue() {
-            return contactSent + contactReceived;
-        }
-
-        public void load(final Runnable contactLifeTimerHandler) {
-            if (contactLifeTimer != null) {
-                contactLifeTimer.interrupt();
-            }
-            this.contactLifeTimerHandler = contactLifeTimerHandler;
-            contactLifeTimer = new Thread(contactLifeTimerHandler);
-            contactLifeTimer.start();
-        }
-
-        public void reload() {
-            if (contactLifeTimer != null) {
-                contactLifeTimer.interrupt();
-            }
-            contactLifeTimer = new Thread(contactLifeTimerHandler);
-            contactLifeTimer.start();
-        }
-    }
-
     private final ClientState state;
     private CautionLevel cautionLevel;
     private final HashMap<ClientState, Contact> contacts;
@@ -153,28 +104,16 @@ public class ClientManager implements Destroyable {
      *
      * @param clientInContact The state of the client in contact.
      * @param contactValue    The number of times they contacted.
-     * @param isSent          The client to manage is the one who sent the contact.
      */
-    public void addContact(final ClientState clientInContact, final int contactValue,
-                           final boolean isSent) {
+    public void addContact(final ClientState clientInContact, final int contactValue) {
         if (contacts.containsKey(clientInContact)) {
             var contact = contacts.get(clientInContact);
-            if (isSent) {
-                contact.contactSent = contactValue;
-            } else {
-                contact.contactReceived = contactValue;
-            }
-            contact.reload();
+            contact.addContact(contactValue);
         } else {
-            var contact = new Contact();
-            if (isSent) {
-                contact.contactSent = contactValue;
-            } else {
-                contact.contactReceived = contactValue;
-            }
+            var contact = new Contact(() -> finishContactLife(clientInContact));
+            contact.addContact(contactValue);
             clientInContact.onStatusChange().add(this::handleContactStatusChange);
             contacts.put(clientInContact, contact);
-            contact.load(() -> finishContactLife(clientInContact, contact));
         }
 
         updateStatus();
@@ -263,9 +202,8 @@ public class ClientManager implements Destroyable {
      * Contact lifetime coroutine.
      *
      * @param clientInContact The client in contact to remove.
-     * @param contact         The contact to remove.
      */
-    private void finishContactLife(final ClientState clientInContact, final Contact contact) {
+    private void finishContactLife(final ClientState clientInContact) {
         try {
             Thread.sleep(SimulatedTime.FORTNIGHTLY);
         } catch (InterruptedException e) {
@@ -274,7 +212,8 @@ public class ClientManager implements Destroyable {
         }
 
         clientInContact.onStatusChange().remove(this::handleContactStatusChange);
-        contacts.remove(clientInContact, contact);
+        contacts.get(clientInContact).destroy();
+        contacts.remove(clientInContact);
         updateStatus();
     }
     //endregion : Coroutine
