@@ -169,7 +169,7 @@ public class ClientManager implements Destroyable {
             }
             contact.reload();
         } else {
-            var contact = new Contact(e -> updateStatus());
+            var contact = new Contact(discard -> updateStatus());
             if (isSent) {
                 contact.contactSent = contactValue;
             } else {

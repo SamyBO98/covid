@@ -161,6 +161,8 @@ public class ServerModel {
             case RISKY:
                 declareRisky(connectionId);
                 return;
+            case INFECTED:
+                return;
             default:
                 throw new IllegalArgumentException();
         }
@@ -172,6 +174,7 @@ public class ServerModel {
     /**
      * @param id The id of client to search for.
      * @return the client with `id`.
+     * @throws IllegalArgumentException if there is no client with `id`.
      */
     private ClientManager getClient(final String id) {
         for (var client : clients.values()) {

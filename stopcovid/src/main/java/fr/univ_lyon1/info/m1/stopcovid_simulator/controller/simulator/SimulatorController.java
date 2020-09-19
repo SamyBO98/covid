@@ -148,7 +148,7 @@ public class SimulatorController implements Initializable, Destroyable {
         var client = new ClientModel();
 
         createClientControlPanel(client);
-        client.onIdChange().add(e -> Platform.runLater(this::renewsMeetItems));
+        client.onIdChange().add(discard -> Platform.runLater(this::renewsMeetItems));
         renewsMeetItems();
 
         client.connect(clientConnectionId, serverMessaging);
