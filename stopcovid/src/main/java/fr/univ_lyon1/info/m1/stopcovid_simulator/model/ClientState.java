@@ -1,8 +1,8 @@
 package fr.univ_lyon1.info.m1.stopcovid_simulator.model;
 
-import com.github.hervian.reflection.Delegate;
-import com.github.hervian.reflection.Event;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.Status;
+import fr.univ_lyon1.info.m1.stopcovid_simulator.util.events.Delegate;
+import fr.univ_lyon1.info.m1.stopcovid_simulator.util.events.Event;
 
 import java.util.UUID;
 
@@ -10,10 +10,10 @@ public class ClientState {
     private String id;
     private Status status;
 
-    private final Delegate.With1ParamAndVoid<String> idChangeDelegate;
-    private final Delegate.With1ParamAndVoid<Status> statusChangeDelegate;
-    private final Event.With1ParamAndVoid<String> idChangeEvent;
-    private final Event.With1ParamAndVoid<Status> statusChangeEvent;
+    private final Delegate.With1Params<String> idChangeDelegate;
+    private final Delegate.With1Params<Status> statusChangeDelegate;
+    private final Event.With1Params<String> idChangeEvent;
+    private final Event.With1Params<Status> statusChangeEvent;
 
     //region : Initialization
 
@@ -24,10 +24,10 @@ public class ClientState {
         id = UUID.randomUUID().toString();
         status = Status.NO_RISK;
 
-        idChangeDelegate = new Delegate.With1ParamAndVoid<>();
-        statusChangeDelegate = new Delegate.With1ParamAndVoid<>();
-        idChangeEvent = new Event.With1ParamAndVoid<>(idChangeDelegate);
-        statusChangeEvent = new Event.With1ParamAndVoid<>(statusChangeDelegate);
+        idChangeDelegate = new Delegate.With1Params<>();
+        statusChangeDelegate = new Delegate.With1Params<>();
+        idChangeEvent = new Event.With1Params<>(idChangeDelegate);
+        statusChangeEvent = new Event.With1Params<>(statusChangeDelegate);
     }
 
     /**
@@ -39,10 +39,10 @@ public class ClientState {
         id = source.id;
         status = source.status;
 
-        idChangeDelegate = new Delegate.With1ParamAndVoid<>();
-        statusChangeDelegate = new Delegate.With1ParamAndVoid<>();
-        idChangeEvent = new Event.With1ParamAndVoid<>(idChangeDelegate);
-        statusChangeEvent = new Event.With1ParamAndVoid<>(statusChangeDelegate);
+        idChangeDelegate = new Delegate.With1Params<>();
+        statusChangeDelegate = new Delegate.With1Params<>();
+        idChangeEvent = new Event.With1Params<>(idChangeDelegate);
+        statusChangeEvent = new Event.With1Params<>(statusChangeDelegate);
     }
     //endregion : Initialization
 
@@ -66,14 +66,14 @@ public class ClientState {
     /**
      * @return `this id change event`.
      */
-    public Event.With1ParamAndVoid<String> onIdChange() {
+    public Event.With1Params<String> onIdChange() {
         return idChangeEvent;
     }
 
     /**
      * @return `this status change event`.
      */
-    public Event.With1ParamAndVoid<Status> onStatusChange() {
+    public Event.With1Params<Status> onStatusChange() {
         return statusChangeEvent;
     }
 
@@ -84,7 +84,7 @@ public class ClientState {
      */
     public void setId(final String id) {
         this.id = id;
-        idChangeDelegate.invokeAndAggregateExceptions(id);
+        idChangeDelegate.invoke(id);
     }
 
     /**
@@ -94,7 +94,7 @@ public class ClientState {
      */
     public void setStatus(final Status status) {
         this.status = status;
-        statusChangeDelegate.invokeAndAggregateExceptions(status);
+        statusChangeDelegate.invoke(status);
     }
     //endregion : Getters & Setters
 }

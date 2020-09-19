@@ -45,11 +45,6 @@
             <artifactId>javafx-fxml</artifactId>
             <version>11.0.2</version>
         </dependency>
-        <dependency>
-            <groupId>com.github.hervian</groupId>
-            <artifactId>safety-mirror</artifactId>
-            <version>4.0.1</version>
-        </dependency>
     </dependencies>
 
     <build>

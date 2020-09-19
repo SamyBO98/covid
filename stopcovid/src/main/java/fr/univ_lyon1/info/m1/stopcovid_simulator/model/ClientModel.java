@@ -1,9 +1,9 @@
 package fr.univ_lyon1.info.m1.stopcovid_simulator.model;
 
-import com.github.hervian.reflection.Event;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.Destroyable;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.SendingStrategy;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.Status;
+import fr.univ_lyon1.info.m1.stopcovid_simulator.util.events.Event;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -88,14 +88,14 @@ public class ClientModel implements Destroyable {
     /**
      * @return the `state id change`.
      */
-    public Event.With1ParamAndVoid<String> onIdChange() {
+    public Event.With1Params<String> onIdChange() {
         return state.onIdChange();
     }
 
     /**
      * @return the `state status change`.
      */
-    public Event.With1ParamAndVoid<Status> onStatusChange() {
+    public Event.With1Params<Status> onStatusChange() {
         return state.onStatusChange();
     }
 
