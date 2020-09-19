@@ -4,63 +4,10 @@ import fr.univ_lyon1.info.m1.stopcovid_simulator.util.Destroyable;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.CautionLevel;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.Status;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.events.Event;
-import fr.univ_lyon1.info.m1.stopcovid_simulator.util.events.Handler;
 
 import java.util.HashMap;
 
 public class ClientManager implements Destroyable {
-    private static class Contact implements Destroyable {
-        private int contactSent;
-        private int contactReceived;
-        private Runnable contactLifeTimerHandler;
-        private Thread contactLifeTimer;
-
-        private final Handler.With1Params<Status> statusChangeHandler;
-
-        /**
-         * Constructor.
-         *
-         * @param statusChangeHandler The status change handler of the client in contact.
-         */
-        Contact(final Handler.With1Params<Status> statusChangeHandler) {
-            contactSent = 0;
-            contactReceived = 0;
-
-            this.statusChangeHandler = statusChangeHandler;
-        }
-
-        /**
-         * Destructor.
-         */
-        @Override
-        public void destroy() {
-            if (contactLifeTimer != null) {
-                contactLifeTimer.interrupt();
-            }
-        }
-
-        /**
-         * @return the total contacts value.
-         */
-        public int getValue() {
-            return contactSent + contactReceived;
-        }
-
-        public void load(final Runnable contactLifeTimerHandler) {
-            this.contactLifeTimerHandler = contactLifeTimerHandler;
-            contactLifeTimer = new Thread(contactLifeTimerHandler);
-            contactLifeTimer.start();
-        }
-
-        public void reload() {
-            if (contactLifeTimer != null) {
-                contactLifeTimer.interrupt();
-            }
-            contactLifeTimer = new Thread(contactLifeTimerHandler);
-            contactLifeTimer.start();
-        }
-    }
-
     private final ClientState state;
     private CautionLevel cautionLevel;
     private final HashMap<ClientState, Contact> contacts;
@@ -98,8 +45,9 @@ public class ClientManager implements Destroyable {
             var contact = contactPair.getValue();
 
             contact.destroy();
-            clientInContact.onStatusChange().remove(contact.statusChangeHandler);
+            clientInContact.onStatusChange().remove(this::handleContactStatusChange);
         }
+        state.onStatusChange().remove(this::handleStatusChange);
     }
     //endregion : Ending
 
@@ -156,28 +104,16 @@ public class ClientManager implements Destroyable {
      *
      * @param clientInContact The state of the client in contact.
      * @param contactValue    The number of times they contacted.
-     * @param isSent          The client to manage is the one who sent the contact.
      */
-    public void addContact(final ClientState clientInContact, final int contactValue,
-                           final boolean isSent) {
+    public void addContact(final ClientState clientInContact, final int contactValue) {
         if (contacts.containsKey(clientInContact)) {
             var contact = contacts.get(clientInContact);
-            if (isSent) {
-                contact.contactSent = contactValue;
-            } else {
-                contact.contactReceived = contactValue;
-            }
-            contact.reload();
+            contact.addContact(contactValue);
         } else {
-            var contact = new Contact(discard -> updateStatus());
-            if (isSent) {
-                contact.contactSent = contactValue;
-            } else {
-                contact.contactReceived = contactValue;
-            }
-            clientInContact.onStatusChange().add(contact.statusChangeHandler);
+            var contact = new Contact(() -> finishContactLife(clientInContact));
+            contact.addContact(contactValue);
+            clientInContact.onStatusChange().add(this::handleContactStatusChange);
             contacts.put(clientInContact, contact);
-            contact.load(() -> finishContactLife(clientInContact, contact));
         }
 
         updateStatus();
@@ -234,6 +170,16 @@ public class ClientManager implements Destroyable {
             infectionLifeTimer.start();
         }
     }
+
+    /**
+     * Handler of `contacts status change`.
+     * Simple redirection to update status method.
+     *
+     * @param discard Discarded parameter.
+     */
+    private void handleContactStatusChange(final Status discard) {
+        updateStatus();
+    }
     //endregion : Event handler
 
     //region : Coroutine
@@ -256,9 +202,8 @@ public class ClientManager implements Destroyable {
      * Contact lifetime coroutine.
      *
      * @param clientInContact The client in contact to remove.
-     * @param contact         The contact to remove.
      */
-    private void finishContactLife(final ClientState clientInContact, final Contact contact) {
+    private void finishContactLife(final ClientState clientInContact) {
         try {
             Thread.sleep(SimulatedTime.FORTNIGHTLY);
         } catch (InterruptedException e) {
@@ -266,8 +211,9 @@ public class ClientManager implements Destroyable {
             return;
         }
 
-        clientInContact.onStatusChange().remove(contact.statusChangeHandler);
-        contacts.remove(clientInContact, contact);
+        clientInContact.onStatusChange().remove(this::handleContactStatusChange);
+        contacts.get(clientInContact).destroy();
+        contacts.remove(clientInContact);
         updateStatus();
     }
     //endregion : Coroutine

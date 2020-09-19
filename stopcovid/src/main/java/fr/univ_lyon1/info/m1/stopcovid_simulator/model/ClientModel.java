@@ -1,7 +1,7 @@
 package fr.univ_lyon1.info.m1.stopcovid_simulator.model;
 
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.Destroyable;
-import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.SendingStrategy;
+import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.SendingStrategyName;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.Status;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.events.Event;
 
@@ -36,9 +36,30 @@ public class ClientModel implements Destroyable {
     }
     //endregion
 
+    private class ContactToSend extends Contact {
+        private int notSentValue;
+
+        protected ContactToSend(final Runnable contactLifeTimerHandler) {
+            super(contactLifeTimerHandler);
+            notSentValue = 0;
+        }
+
+        @Override
+        public void addContact(final int value) {
+            notSentValue += value;
+            super.addContact(value);
+        }
+
+        public int consumeNotSentValue() {
+            var tempValue = notSentValue;
+            notSentValue = 0;
+            return tempValue;
+        }
+    }
+
     private final ClientState state;
     private SendingStrategy sendingStrategy;
-    private final HashMap<String, Integer> tempContacts;
+    private final HashMap<String, ContactToSend> contacts;
     private final Thread idUpdater;
 
     //region : Initialization
@@ -48,8 +69,8 @@ public class ClientModel implements Destroyable {
      */
     public ClientModel() {
         state = new ClientState();
-        tempContacts = new HashMap<>();
-        sendingStrategy = SendingStrategy.REPEATED;
+        contacts = new HashMap<>();
+        sendingStrategy = new SendingStrategy.SendRepeated();
 
         idUpdater = new Thread(this::renewIdLoopCor);
         idUpdater.start();
@@ -65,6 +86,9 @@ public class ClientModel implements Destroyable {
     public void destroy() {
         disconnect();
         idUpdater.interrupt();
+        for (var contact : contacts.values()) {
+            contact.destroy();
+        }
     }
     //endregion : Ending
 
@@ -102,10 +126,22 @@ public class ClientModel implements Destroyable {
     /**
      * Set `this sending strategy` with `sending strategy`.
      *
-     * @param sendingStrategy The sending strategy to set.
+     * @param sendingStrategyName The sending strategy to set.
      */
-    public void setSendingStrategy(final SendingStrategy sendingStrategy) {
-        this.sendingStrategy = sendingStrategy;
+    public void setSendingStrategy(final SendingStrategyName sendingStrategyName) {
+        switch (sendingStrategyName) {
+            case ALL:
+                sendingStrategy = new SendingStrategy.SendAll();
+                break;
+            case REPEATED:
+                sendingStrategy = new SendingStrategy.SendRepeated();
+                break;
+            case FREQUENT:
+                sendingStrategy = new SendingStrategy.SendFrequent();
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
     }
     //endregion : Getters & Setters
 
@@ -117,15 +153,17 @@ public class ClientModel implements Destroyable {
      * @param id The id of the client to met.
      */
     public void meet(final String id) {
-        if (tempContacts.containsKey(id)) {
-            tempContacts.replace(id, tempContacts.get(id) + 1);
+        if (contacts.containsKey(id)) {
+            contacts.get(id).addContact();
         } else {
-            tempContacts.put(id, 1);
+            var contact = new ContactToSend(() -> finishContactLife(id));
+            contact.addContact();
+            contacts.put(id, contact);
         }
 
-        var contactValue = tempContacts.get(id);
-        if (contactValue >= sendingStrategy.getSendingThreshold()) {
-            declareContact(id, contactValue);
+        var contact = contacts.get(id);
+        if (sendingStrategy.mustSendContact(contact)) {
+            declareContact(id, contact.consumeNotSentValue());
         }
     }
     //endregion : Action
@@ -217,6 +255,23 @@ public class ClientModel implements Destroyable {
             }
             updateId();
         }
+    }
+
+    /**
+     * Contact lifetime coroutine.
+     *
+     * @param clientInContactId The id of client in contact to remove.
+     */
+    private void finishContactLife(final String clientInContactId) {
+        try {
+            Thread.sleep(SimulatedTime.FORTNIGHTLY);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            return;
+        }
+
+        contacts.get(clientInContactId).destroy();
+        contacts.remove(clientInContactId);
     }
     //endregion : Coroutine
 }
