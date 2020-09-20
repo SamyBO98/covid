@@ -14,6 +14,7 @@ import javafx.scene.layout.Pane;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class SimulatorController implements Initializable, Destroyable {
@@ -33,7 +34,7 @@ public class SimulatorController implements Initializable, Destroyable {
     @FXML
     private Pane clientControlPanelsContainer;
 
-    private final ArrayList<ClientControlPanelController> clientControlPanelControllers;
+    private final List<ClientControlPanelController> clientControlPanelControllers;
     private ServerControlPanelController serverControlPanelController;
 
     //region : Initialization
