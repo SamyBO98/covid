@@ -2,6 +2,7 @@ package fr.univ_lyon1.info.m1.stopcovid_simulator.controller.simulator;
 
 import fr.univ_lyon1.info.m1.stopcovid_simulator.controller.ClientController;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.model.ClientModel;
+import fr.univ_lyon1.info.m1.stopcovid_simulator.model.ListOfSendingStrategy;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.model.SendingStrategy;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.Destroyable;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.Status;
@@ -67,9 +68,9 @@ public class ClientControlPanelController implements Initializable, Destroyable 
 
         meetButton.setOnAction(this::handleMeet);
 
-        sendingStrategyComboBox.getItems().add(new SendingStrategy.SendAll());
-        sendingStrategyComboBox.getItems().add(new SendingStrategy.SendRepeated());
-        sendingStrategyComboBox.getItems().add(new SendingStrategy.SendFrequent());
+        for (var sendingStrategy : ListOfSendingStrategy.LIST) {
+            sendingStrategyComboBox.getItems().add(sendingStrategy);
+        }
 
         sendingStrategyButton.setOnAction(this::handleChangeSendingStrategy);
 
