@@ -4,7 +4,6 @@ import fr.univ_lyon1.info.m1.stopcovid_simulator.controller.ClientController;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.model.ClientModel;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.model.SendingStrategy;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.Destroyable;
-import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.SendingStrategyName;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.Status;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -36,7 +35,7 @@ public class ClientControlPanelController implements Initializable, Destroyable 
     @FXML
     private Button meetButton;
     @FXML
-    private ComboBox<SendingStrategyName> sendingStrategyComboBox;
+    private ComboBox<SendingStrategy> sendingStrategyComboBox;
     @FXML
     private Button sendingStrategyButton;
     @FXML
@@ -68,9 +67,9 @@ public class ClientControlPanelController implements Initializable, Destroyable 
 
         meetButton.setOnAction(this::handleMeet);
 
-        sendingStrategyComboBox.getItems().add(SendingStrategyName.ALL);
-        sendingStrategyComboBox.getItems().add(SendingStrategyName.REPEATED);
-        sendingStrategyComboBox.getItems().add(SendingStrategyName.FREQUENT);
+        sendingStrategyComboBox.getItems().add(new SendingStrategy.SendAll());
+        sendingStrategyComboBox.getItems().add(new SendingStrategy.SendRepeated());
+        sendingStrategyComboBox.getItems().add(new SendingStrategy.SendFrequent());
 
         sendingStrategyButton.setOnAction(this::handleChangeSendingStrategy);
 
@@ -149,19 +148,7 @@ public class ClientControlPanelController implements Initializable, Destroyable 
     private void handleChangeSendingStrategy(final ActionEvent event) {
         var sendingStrategy = sendingStrategyComboBox.getValue();
         if (sendingStrategy != null) {
-            switch (sendingStrategy) {
-                case ALL:
-                    client.setSendingStrategy(new SendingStrategy.SendAll());
-                    break;
-                case REPEATED:
-                    client.setSendingStrategy(new SendingStrategy.SendRepeated());
-                    break;
-                case FREQUENT:
-                    client.setSendingStrategy(new SendingStrategy.SendFrequent());
-                    break;
-                default:
-                    throw new IllegalStateException();
-            }
+            client.setSendingStrategy(sendingStrategy);
         }
     }
 
