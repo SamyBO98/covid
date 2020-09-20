@@ -1,5 +1,21 @@
 Ce fichier contiendra les nouvelles du cours. Un mail sera envoyé quand le fichier est mis à jour.
 
+# 17/09/2020 : Précisions sur les consignes
+
+* Le nombre de pages maximum du rapport (6 pages) est à voir comme une indication. Bien sûr, si vous avez trop de choses intéressantes à dire vous pouvez déborder un peu (et le lecteur préférera 7 pages correctement présentées à 6 pages en police taille 4pt).
+
+* Si vous manquez d'inspiration pour mettre en œuvre des design-patterns, vous pouvez vous autoriser à ajouter des fonctionnalités qui ne sont que des prétextes pour utiliser un design-pattern. C'est bien sûr l'inverse de ce qu'on ferait dans la vraie vie avec un vrai client (à qui on ne proposera pas une fonctionnalité « parce que c'est fun à coder et que ça permet de faire un visiteur » !), mais profitons du fait que le vrai client n'existe pas pour donner un peu de liberté à notre imagination !
+
+# 17/09/2020 : Dernière ligne droite
+
+Le stage intensif se termine demain. Quelques informations et conseils :
+
+* Le dernier CM aura lieu demain vendredi, 8h-9h30, amphi 2 Déambu ou via [WebEx](https://univ-lyon1.webex.com/meet/matthieu.moy). Vous avez des salles machines réservées sur le créneau suivant, mais pas d'encadrant.
+
+* Le projet est à rendre pour ce dimanche soir. Lire et relire les consignes sur [projet-note.md](projet-note.md). Attention, posez bien vos questions sur le chat-info avant le week-end (il n'est pas garanti qu'il y ait des enseignants sur le chat pendant le week-end).
+
+* Pour rappel, l'examen aura lieu le 14/10/2020
+
 # 11/09/2020 (ter) : Vidéo du CM sur le test
 
 La vidéo du CM sur le test est disponible, mais en mode « unlisted » sur Youtube. Le lien est disponible dans le canal mif01-cm du chat-info. Merci à Florian Garcia qui a retouché la bande son pour moins vous casser les oreilles avec les bip-bip des retardataires.
