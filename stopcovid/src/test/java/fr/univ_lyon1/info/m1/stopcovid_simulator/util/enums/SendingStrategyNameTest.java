@@ -18,4 +18,5 @@ class SendingStrategyNameTest {
         assertEquals("Send repeated", repeatedResult);
         assertEquals("Send frequent", frequentResult);
     }
+
 }
