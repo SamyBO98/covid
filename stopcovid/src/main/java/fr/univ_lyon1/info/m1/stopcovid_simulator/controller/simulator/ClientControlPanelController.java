@@ -2,6 +2,7 @@ package fr.univ_lyon1.info.m1.stopcovid_simulator.controller.simulator;
 
 import fr.univ_lyon1.info.m1.stopcovid_simulator.controller.ClientController;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.model.ClientModel;
+import fr.univ_lyon1.info.m1.stopcovid_simulator.model.SendingStrategy;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.Destroyable;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.SendingStrategyName;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.Status;
@@ -148,7 +149,19 @@ public class ClientControlPanelController implements Initializable, Destroyable 
     private void handleChangeSendingStrategy(final ActionEvent event) {
         var sendingStrategy = sendingStrategyComboBox.getValue();
         if (sendingStrategy != null) {
-            client.setSendingStrategy(sendingStrategy);
+            switch (sendingStrategy) {
+                case ALL:
+                    client.setSendingStrategy(new SendingStrategy.SendAll());
+                    break;
+                case REPEATED:
+                    client.setSendingStrategy(new SendingStrategy.SendRepeated());
+                    break;
+                case FREQUENT:
+                    client.setSendingStrategy(new SendingStrategy.SendFrequent());
+                    break;
+                default:
+                    throw new IllegalStateException();
+            }
         }
     }
 
