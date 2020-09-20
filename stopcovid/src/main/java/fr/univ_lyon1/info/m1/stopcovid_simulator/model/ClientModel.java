@@ -1,7 +1,6 @@
 package fr.univ_lyon1.info.m1.stopcovid_simulator.model;
 
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.Destroyable;
-import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.SendingStrategyName;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.enums.Status;
 import fr.univ_lyon1.info.m1.stopcovid_simulator.util.events.Event;
 
@@ -36,7 +35,7 @@ public class ClientModel implements Destroyable {
     }
     //endregion
 
-    private class ContactToSend extends Contact {
+    private static class ContactToSend extends Contact {
         private int notSentValue;
 
         protected ContactToSend(final Runnable contactLifeTimerHandler) {
@@ -126,22 +125,10 @@ public class ClientModel implements Destroyable {
     /**
      * Set `this sending strategy` with `sending strategy`.
      *
-     * @param sendingStrategyName The sending strategy to set.
+     * @param sendingStrategy The sending strategy to set.
      */
-    public void setSendingStrategy(final SendingStrategyName sendingStrategyName) {
-        switch (sendingStrategyName) {
-            case ALL:
-                sendingStrategy = new SendingStrategy.SendAll();
-                break;
-            case REPEATED:
-                sendingStrategy = new SendingStrategy.SendRepeated();
-                break;
-            case FREQUENT:
-                sendingStrategy = new SendingStrategy.SendFrequent();
-                break;
-            default:
-                throw new IllegalArgumentException();
-        }
+    public void setSendingStrategy(final SendingStrategy sendingStrategy) {
+        this.sendingStrategy = sendingStrategy;
     }
     //endregion : Getters & Setters
 
